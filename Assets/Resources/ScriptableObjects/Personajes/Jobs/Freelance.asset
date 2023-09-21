@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f72f8fe68e140542a3890ed0f299a02, type: 3}
+  m_Name: Freelance
+  m_EditorClassIdentifier: 
+  InitialName: Freelance
+  InitialLevel: 1
+  InitialMaxLevel: 20
+  LevelUpFormula: Pow({jlv}, 2) + 5
+  InitialLife: 5
+  InitialMana: 5
+  InitialStamina: 5
+  InitialStrength: 0
+  InitialDex: 0
+  InitialMind: 0
+  InitialDefense: 0
+  InitialMagicDefense: 0
+  InitialSpeed: 0
+  InitialCritProb: 0
+  InitialPrecision: 0
+  InitialEvasion: 0
+  InitialExp: 0
+  InitialExpNextLevel: 0
+  InitialExpReqMult: 0
+  InitialBasicAttack: {fileID: 0}
+  InitialSkills: []
+  InitialGuardSkill: {fileID: 0}
+  InitialWaitSkill: {fileID: 0}
+  InitialFleeSkill: {fileID: 0}
+  equipmentTypeEquipable: []
+  equipParts: []
+  lifeGrowth: 10
+  manaGrowth: 5
+  staminaGrowth: 2
+  strengthGrowth: 1
+  defenseGrowth: rndm
+  dexterityGrowth: 1
+  mindGrowth: 1
+  magicDefenseGrowth: rndm
+  speedGrowth: 1
+  critProbGrowth: 0.0
+  precisionGrowth: 0.0
+  evasionGrowth: 0.0

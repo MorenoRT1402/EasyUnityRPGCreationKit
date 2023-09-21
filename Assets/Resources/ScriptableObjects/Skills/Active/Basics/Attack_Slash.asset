@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be5a7595854d7f4a831b97894f33aee, type: 3}
+  m_Name: Attack_Slash
+  m_EditorClassIdentifier: 
+  skillName: Atacar
+  description: 
+  family: 
+  targetType: 5
+  usableOn: 1
+  power: 1
+  variacion:
+  - 0.8
+  - 1.2
+  manaCost: 0
+  staminaCost: 0
+  formula: astr*pwr+aatk - bdef
+  criticProb: 100
+  precision: 95
+  hits: 1
+  castTime: 0
+  moveAnimationType: 1
+  hitAnimationType: 0
+  animationOnTarget: {fileID: 7400000, guid: 3c37a1bc3956bd9449cdd8c027fb6804, type: 2}
+  affinities: 00000000
+  type: 0
+  canCure: 0

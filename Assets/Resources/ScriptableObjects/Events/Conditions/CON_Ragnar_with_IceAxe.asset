@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cadbadf043e44e446a0ef898bba2f1cf, type: 3}
+  m_Name: CON_Ragnar_with_IceAxe
+  m_EditorClassIdentifier: 
+  eventType: 3
+  item: {fileID: 11400000, guid: 123ace238491c494bb362022cefdcada, type: 2}
+  amount: 3
+  conversation: []
+  choicePretext: {fileID: 0}
+  choicesText: []
+  choicesConsequences: []
+  condition: 4
+  positiveConsequence: {fileID: 11400000, guid: 9326ca221a87898418a8a8ba174a800f, type: 2}
+  negativeConsequence: {fileID: 11400000, guid: 69c093b58a681cb44b7b65519899119c, type: 2}
+  index: 0
+  switchOn: 1
+  logicalOperation: 2
+  value: 24
+  equipped: 1
+  itemsInShop: []
+  canBuy: 1
+  canSell: 1
+  teleportPlayer: 0
+  teleportThis: 0
+  objectToTeleportName: 
+  destinationScene: 
+  targetPosition: {x: 0, y: 0}
+  enemyGroup: []
+  canEscape: 0
+  canBeDefeated: 1
+  character: {fileID: 11400000, guid: d20a24713ae75de4dbc5f8778412f1be, type: 2}
+  allyCharacterIndex: 0
+  healAll: 1
+  lifeHealPercent: 0
+  manaHealPercent: 0
+  staminaHealPercent: 0
+  statusHeal: 1
+  aspectToModify: 0
+  newCharacter: {fileID: 0}
+  newName: 
+  newJob: {fileID: 0}
+  modScale: 0
+  statToModify: 0
+  affinityToModify: 0
+  equipItem: {fileID: 0}
+  equip: 0
+  newAnimations: {fileID: 0}
+  newSpriteInMenu: {fileID: 0}
+  skills: []
+  changeOption: 0
+  resetStats: 0
+  directions: 
+  values: []
+  newEventList: []
+  menuOption: 0
+  enable: 0
+  eventRoute: 0
+  eventTrigger: 0
+  component: 0
+  newSprite: {fileID: 0}
+  enableComponent: 0
+  option: 0
+  audio: {fileID: 0}
+  volume: 0.5
+  audioType: 0
+  variableType: 0
+  dataOperation: 0

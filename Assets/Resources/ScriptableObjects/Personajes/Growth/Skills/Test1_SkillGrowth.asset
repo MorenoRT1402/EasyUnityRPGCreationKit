@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a9a3627fc2f3545a13e4c9cf8be761, type: 3}
+  m_Name: Test1_SkillGrowth
+  m_EditorClassIdentifier: 
+  learnLevels: 0200000003000000030000000300000004000000
+  skillPerLevel:
+  - {fileID: 11400000, guid: f541220051ef3cb4b86fe5846ecc0f5b, type: 2}
+  - {fileID: 11400000, guid: 82356e4a779c32642850093787feaaad, type: 2}
+  - {fileID: 11400000, guid: 250862a46043534478124a6a44e516fe, type: 2}
+  - {fileID: 11400000, guid: 45493153544749d40bb2babf38b5e792, type: 2}
+  - {fileID: 11400000, guid: 58229b7cddb84ea4ca9ebe70c051b1f7, type: 2}

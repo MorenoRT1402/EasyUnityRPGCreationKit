@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be5a7595854d7f4a831b97894f33aee, type: 3}
+  m_Name: Fire
+  m_EditorClassIdentifier: 
+  family: Black Magic
+  skillName: Fire
+  description: 
+  targetType: 5
+  power: 15
+  variacion:
+  - 0.7
+  - 1.3
+  manaCost: 5
+  staminaCost: 0
+  formula: pwr + amnd - bmdf
+  criticProb: 100
+  precision: 90
+  hits: 1
+  castTime: 1
+  moveAnimationType: 0
+  hitAnimationType: 1
+  animationOnTarget: {fileID: 7400000, guid: 63e954f08ee8ee144ad62d9788c15fdd, type: 2}
+  affinities: 04000000
+  type: 1

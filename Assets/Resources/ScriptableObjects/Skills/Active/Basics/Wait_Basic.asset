@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8d1d85577e64d478c19a5921e1a6e0, type: 3}
+  m_Name: Wait_Basic
+  m_EditorClassIdentifier: 
+  skillName: Wait
+  description: 
+  targetType: 0
+  power: 0
+  variacion: []
+  manaCost: 0
+  staminaCost: 0
+  formula: pwr
+  criticProb: 0
+  precision: 0
+  hits: 1
+  castTime: 0
+  moveAnimationType: 0
+  hitAnimationType: 3
+  animationOnTarget: {fileID: 0}
+  specialCommand: 5

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8e066203049bd4b9a539b1bc4d6fd3, type: 3}
+  m_Name: Berserkr_Orc
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: 03b0a48c57f969d41b135da67420a0c4, type: 2}
+  statsGrowth: {fileID: 11400000, guid: c03db96ce273021429c4a3a10aae7a12, type: 2}
+  job: {fileID: 11400000, guid: 6e16f0bbe211c7442ba4995585f6163d, type: 2}
+  affinities: {fileID: 11400000, guid: 05905976264f437419daae67e2f4824d, type: 2}
+  animationSheet: {fileID: 9100000, guid: 8329d76753649134dbc124e16ad8cddb, type: 2}

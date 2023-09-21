@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d32c5e32287d004a813a02abb3c73d5, type: 3}
+  m_Name: T5_Slime2_CON2
+  m_EditorClassIdentifier: 
+  consequenceEvents:
+  - {fileID: 11400000, guid: 73cd90a475faaf7408f903a43f2b0822, type: 2}
+  - {fileID: 11400000, guid: 6b088d551a8995c4da21dda8d240d7f9, type: 2}
+  - {fileID: 11400000, guid: 7b8f9cbaeb67bcc47883ace5afefcb1b, type: 2}

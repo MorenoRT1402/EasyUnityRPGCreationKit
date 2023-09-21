@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cadbadf043e44e446a0ef898bba2f1cf, type: 3}
+  m_Name: AU_PauseMusic1
+  m_EditorClassIdentifier: 
+  eventType: 15
+  item: {fileID: 0}
+  amount: 0
+  conversation: []
+  choicePretext: {fileID: 0}
+  choicesText: []
+  choicesConsequences: []
+  index: 0
+  switchOn: 0
+  value: 
+  itemsInShop: []
+  canBuy: 1
+  canSell: 1
+  teleportPlayer: 0
+  teleportThis: 0
+  objectToTeleportName: 
+  destinationScene: 
+  targetPosition: {x: 0, y: 0}
+  enemyGroup: []
+  canEscape: 0
+  canBeDefeated: 1
+  character: {fileID: 0}
+  allyCharacterIndex: 0
+  healAll: 1
+  lifeHealPercent: 0
+  manaHealPercent: 0
+  staminaHealPercent: 0
+  statusHeal: 1
+  aspectToModify: 0
+  newCharacter: {fileID: 0}
+  newName: 
+  newJob: {fileID: 0}
+  modScale: 0
+  statToModify: 0
+  affinityToModify: 0
+  equipItem: {fileID: 0}
+  equip: 0
+  newAnimations: {fileID: 0}
+  newSpriteInMenu: {fileID: 0}
+  skills: []
+  changeOption: 0
+  resetStats: 0
+  directions: 
+  values: []
+  newEventList: []
+  menuOption: 0
+  enable: 0
+  eventRoute: 0
+  eventTrigger: 0
+  component: 0
+  newSprite: {fileID: 0}
+  enableComponent: 0
+  option: 3
+  audio: {fileID: 8300000, guid: 5ecacb1d89ff2e940969b46fb071cdda, type: 3}
+  volume: 0.25
+  audioType: 1
+  variableType: 0
+  dataOperation: 0

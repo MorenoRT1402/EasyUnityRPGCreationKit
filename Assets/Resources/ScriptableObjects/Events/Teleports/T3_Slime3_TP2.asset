@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cadbadf043e44e446a0ef898bba2f1cf, type: 3}
+  m_Name: T3_Slime3_TP2
+  m_EditorClassIdentifier: 
+  eventType: 6
+  conversation: []
+  itemsInShop: []
+  canBuy: 1
+  canSell: 1
+  teleportPlayer: 0
+  teleportThis: 1
+  objectToTeleportName: 
+  destinationScene: WorldScene
+  targetPosition: {x: 971.5, y: 1003.5}
+  enemyGroup: []
+  canEscape: 0
+  canBeDefeated: 1
+  newEventList: []

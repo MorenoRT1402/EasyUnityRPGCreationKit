@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0d0a6f5e7088d44b20870788743294, type: 3}
+  m_Name: Ragnar
+  m_EditorClassIdentifier: 
+  showInitialFields: 0
+  showBaseFields: 0
+  spriteInMenu: {fileID: 21300000, guid: a143705f6d3a22948a69363942ec6b3b, type: 3}
+  equipmentTypeEquipable:
+  - AXE
+  equipParts:
+  - {fileID: 11400000, guid: 6906e9bcdf4c5aa4e8f7288b4664aa94, type: 2}
+  - {fileID: 11400000, guid: b584c4be611515347aaf27ed17d30eb1, type: 2}
+  - {fileID: 11400000, guid: f9e32718ed126f547b178157371eb6fb, type: 2}
+  initialEquipment:
+  - {fileID: 11400000, guid: 1f0b75d89b629d048923a228f43a5949, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  initialName: Ragnar
+  initialLevel: 7
+  initialMaxLevel: 50
+  LevelUpFormula: Pow({lvl}, 3.11) + 5
+  initialLife: 30
+  initialMana: 10
+  initialStamina: 20
+  initialAttack: 0
+  initialStrength: 9
+  initialDexterity: 2
+  initialMagicAttack: 0
+  initialMind: 2
+  initialDefense: 0
+  initialMagicDefense: 0
+  initialSpeed: 5
+  initialCritProb: 2
+  initialPrecision: 85
+  initialEvasion: 1
+  InitialExp: 268
+  initialBasicAttack: {fileID: 11400000, guid: d83d577dcdaa34a4b858e451c1c2bfd1, type: 2}
+  initialSkills:
+  - {fileID: 11400000, guid: 58229b7cddb84ea4ca9ebe70c051b1f7, type: 2}
+  - {fileID: 11400000, guid: b49e89a6c4f902243a83e6f44cb79188, type: 2}
+  - {fileID: 11400000, guid: 682d0b2d3a856264fa72b05cc85c0137, type: 2}
+  InitialGuardSkill: {fileID: 11400000, guid: e65681a4038fbfa478ac61ada2958834, type: 2}
+  InitialWaitSkill: {fileID: 11400000, guid: bda49b8e4cf9e8e4a957a509dbdd81fe, type: 2}
+  InitialFleeSkill: {fileID: 11400000, guid: c721ad4696bba50459c0b679167daaf8, type: 2}
+  ExpFormula: 23
+  MoneyFormula: 0
+  JobPointsFormula: 0.0
+  drops: []

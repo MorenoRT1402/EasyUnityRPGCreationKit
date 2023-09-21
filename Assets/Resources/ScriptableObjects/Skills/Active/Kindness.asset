@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be5a7595854d7f4a831b97894f33aee, type: 3}
+  m_Name: Kindness
+  m_EditorClassIdentifier: 
+  skillName: Kindness
+  description: More social = more damage
+  family: SPECIAL
+  targetType: 5
+  usableOn: 1
+  power: 0
+  variacion: []
+  manaCost: 0
+  staminaCost: 0
+  formula: numV[0]
+  criticProb: 0
+  precision: 90
+  hits: 1
+  castTime: 0
+  moveAnimationType: 0
+  hitAnimationType: 0
+  animationOnTarget: {fileID: 7400000, guid: 3c37a1bc3956bd9449cdd8c027fb6804, type: 2}
+  affinities: 03000000
+  type: 3
+  canCure: 0

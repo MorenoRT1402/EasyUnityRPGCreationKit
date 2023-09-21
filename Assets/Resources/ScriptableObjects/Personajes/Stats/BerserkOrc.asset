@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0d0a6f5e7088d44b20870788743294, type: 3}
+  m_Name: BerserkOrc
+  m_EditorClassIdentifier: 
+  showInitialFields: 0
+  showBaseFields: 0
+  spriteInMenu: {fileID: 1715209255, guid: 4eb59419c1b97ed4c940bfdac4435ebf, type: 3}
+  equipmentTypeEquipable: []
+  equipParts: []
+  initialEquipment: []
+  initialName: Berserk Orc
+  initialLevel: 7
+  initialMaxLevel: 20
+  LevelUpFormula: Pow({lvl}, 3.12) + 5 * lvl
+  initialLife: 30
+  initialMana: 10
+  initialStamina: 20
+  initialAttack: 1
+  initialStrength: 7
+  initialDexterity: 3
+  initialMagicAttack: 0
+  initialMind: 2
+  initialDefense: 4
+  initialMagicDefense: 2
+  initialSpeed: 3
+  initialCritProb: 2
+  initialPrecision: 80
+  initialEvasion: 1
+  InitialExp: 0
+  initialBasicAttack: {fileID: 11400000, guid: d83d577dcdaa34a4b858e451c1c2bfd1, type: 2}
+  initialSkills:
+  - {fileID: 11400000, guid: 682d0b2d3a856264fa72b05cc85c0137, type: 2}
+  InitialGuardSkill: {fileID: 11400000, guid: e65681a4038fbfa478ac61ada2958834, type: 2}
+  InitialWaitSkill: {fileID: 11400000, guid: bda49b8e4cf9e8e4a957a509dbdd81fe, type: 2}
+  InitialFleeSkill: {fileID: 11400000, guid: c721ad4696bba50459c0b679167daaf8, type: 2}
+  ExpFormula: 340
+  MoneyFormula: 5
+  JobPointsFormula: 2
+  drops: []

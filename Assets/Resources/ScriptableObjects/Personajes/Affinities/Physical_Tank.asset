@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be606c8d768ce1145bc14391b46b3e6d, type: 3}
+  m_Name: Physical_Tank
+  m_EditorClassIdentifier: 
+  affinities: 
+  initialSlash: 0.5
+  initialCrush: 0.5
+  initialPierce: 0.9
+  initialNoElemental: 1
+  initialFire: 1.5
+  initialWater: 1.5
+  initialElectric: 1.5
+  initialIce: 1.5
+  initialWind: 1.5
+  initialEarth: 1.5
+  initialLight: 1.5
+  initialDark: 1.5

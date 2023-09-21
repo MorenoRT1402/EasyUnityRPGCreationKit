@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8e066203049bd4b9a539b1bc4d6fd3, type: 3}
+  m_Name: Tester
+  m_EditorClassIdentifier: 
+  stats: {fileID: 11400000, guid: ad0bfe060a5b3814dbdb25d29154d824, type: 2}
+  statsGrowth: {fileID: 11400000, guid: c03db96ce273021429c4a3a10aae7a12, type: 2}
+  skillsLearn: {fileID: 11400000, guid: e3ff8470d8a2c2e41ad01feb55ad66bb, type: 2}
+  job: {fileID: 11400000, guid: 8d5a27f69834a874283d6f46834a1262, type: 2}
+  affinities: {fileID: 11400000, guid: f1567965373e510448baf5e1a42d79ca, type: 2}
+  animationSheet: {fileID: 9100000, guid: 96b0b229c0b3d5c48ad4636a2e497e0e, type: 2}

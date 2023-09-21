@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca183d3358216164e876bc038e4ed4cd, type: 3}
+  m_Name: Counter
+  m_EditorClassIdentifier: 
+  ailmentName: Counter
+  description: Counter after receiving an attack
+  icon: {fileID: 0}
+  animation: {fileID: 0}
+  accurate: 100
+  effect: 8
+  timeInSeconds: []
+  afterTakeDamage: 0
+  healProb: 0
+  afterBattle: 1
+  afterDeath: 1
+  secundaryAilments: []
+  Effects: 
+  damagePerInterval: 
+  interval: 0
+  affinityToModify: 0
+  weaknessMult: 0
+  stat: 0
+  statMult: 0
+  actionProb: 0
+  faction: 0
+  actionToInvalid: 0
+  hpTo0: 0
+  leavesCombat: 0
+  typeThatCounter: 0
+  counterSkill: 1
+  customSkill: {fileID: 0}
+  counterProb: 100

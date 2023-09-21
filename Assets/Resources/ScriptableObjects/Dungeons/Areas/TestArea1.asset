@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052e58ac2753ef944b2f2c3f4f5445d2, type: 3}
+  m_Name: TestArea1
+  m_EditorClassIdentifier: 
+  areaID: testArea1
+  randomEncounterMask:
+    serializedVersion: 2
+    m_Bits: 128
+  enemyGroupsList:
+  - {fileID: 11400000, guid: 8764ecf8480aa254eb409811437d6f81, type: 2}

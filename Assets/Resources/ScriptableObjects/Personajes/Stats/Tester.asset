@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0d0a6f5e7088d44b20870788743294, type: 3}
+  m_Name: Tester
+  m_EditorClassIdentifier: 
+  showInitialFields: 0
+  showBaseFields: 0
+  spriteInMenu: {fileID: 21300000, guid: 073ea0892e54f134abe379c2f19cc30b, type: 3}
+  equipmentTypeEquipable:
+  - SWORD
+  - LIGHT_ARMOR
+  equipParts:
+  - {fileID: 11400000, guid: 6906e9bcdf4c5aa4e8f7288b4664aa94, type: 2}
+  - {fileID: 11400000, guid: b584c4be611515347aaf27ed17d30eb1, type: 2}
+  - {fileID: 11400000, guid: f9e32718ed126f547b178157371eb6fb, type: 2}
+  initialEquipment:
+  - {fileID: 11400000, guid: 4153b083f0390a343889a0b9ab62c84f, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: bdaad635215567742bcf3c7edde5da71, type: 2}
+  initialName: Tester
+  initialLevel: 1
+  initialMaxLevel: 50
+  LevelUpFormula: Pow({lvl}, 3.1) + 5 * lvl
+  initialLife: 20
+  initialMana: 15
+  initialStamina: 15
+  initialAttack: 0
+  initialStrength: 4
+  initialDexterity: 5
+  initialMagicAttack: 0
+  initialMind: 5
+  initialDefense: 0
+  initialMagicDefense: 0
+  initialSpeed: 7
+  initialCritProb: 3
+  initialPrecision: 95
+  initialEvasion: 3
+  InitialExp: 0
+  initialBasicAttack: {fileID: 11400000, guid: d83d577dcdaa34a4b858e451c1c2bfd1, type: 2}
+  initialSkills:
+  - {fileID: 11400000, guid: 4af53ecc2e709d0488388dd24288c2f9, type: 2}
+  - {fileID: 11400000, guid: 08f305fda1ed36842b2a7c30facd5c6f, type: 2}
+  - {fileID: 11400000, guid: 4775ebaa603e40749b92a36930fa7f67, type: 2}
+  - {fileID: 11400000, guid: 0e472a3bb2c66994aa5bd2bc04e475b4, type: 2}
+  - {fileID: 11400000, guid: 80ba11998dc5e4746834017f091b9ee3, type: 2}
+  - {fileID: 11400000, guid: d5f1b5e0cc9bbf645a21a424d907c772, type: 2}
+  - {fileID: 11400000, guid: 250862a46043534478124a6a44e516fe, type: 2}
+  - {fileID: 11400000, guid: 15fa9339fd27d15419bf24ab6e404920, type: 2}
+  InitialGuardSkill: {fileID: 11400000, guid: e65681a4038fbfa478ac61ada2958834, type: 2}
+  InitialWaitSkill: {fileID: 11400000, guid: bda49b8e4cf9e8e4a957a509dbdd81fe, type: 2}
+  InitialFleeSkill: {fileID: 11400000, guid: c721ad4696bba50459c0b679167daaf8, type: 2}
+  ExpFormula: 18
+  MoneyFormula: 0
+  JobPointsFormula: 0.0
+  drops: []

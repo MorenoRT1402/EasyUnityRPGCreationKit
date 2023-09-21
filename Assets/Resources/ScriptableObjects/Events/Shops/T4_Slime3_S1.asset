@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cadbadf043e44e446a0ef898bba2f1cf, type: 3}
+  m_Name: T4_Slime3_S1
+  m_EditorClassIdentifier: 
+  eventType: 5
+  conversation: []
+  itemsInShop:
+  - {fileID: 11400000, guid: 3289da7a31959b740b08f4c9f88570ee, type: 2}
+  - {fileID: 11400000, guid: 58ffebe1a9c7c524e98721ec08be7dac, type: 2}
+  - {fileID: 11400000, guid: 4153b083f0390a343889a0b9ab62c84f, type: 2}
+  - {fileID: 11400000, guid: 0cd503c552b7d084b9be546a156ea85d, type: 2}
+  - {fileID: 11400000, guid: 1f0b75d89b629d048923a228f43a5949, type: 2}
+  - {fileID: 11400000, guid: bdaad635215567742bcf3c7edde5da71, type: 2}
+  canBuy: 1
+  canSell: 1
+  teleportPlayer: 0
+  teleportThis: 0
+  objectToTeleportName: 
+  destinationScene: 
+  targetPosition: {x: 0, y: 0}
+  enemyGroup: []
+  canEscape: 0
+  canBeDefeated: 1
+  newEventList: []
