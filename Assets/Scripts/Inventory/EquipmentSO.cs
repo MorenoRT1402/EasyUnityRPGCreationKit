@@ -34,7 +34,6 @@ public class EquipmentSO : ItemSO
     {
         stats = new(statsMod);
         personajeAffinities = new(affinities);
-        InitStatsWeightDict();
     }
 
     private void InitStatsWeightDict()
@@ -45,17 +44,17 @@ public class EquipmentSO : ItemSO
             { Stats.HP_MAX, GM.maxHPW },
             { Stats.MP_MAX, GM.maxMPW },
             { Stats.STAMINA_MAX, GM.maxStaminaW },
-            { Stats.MAX_ATTACK, GM.maxAttackW },
-            { Stats.MAX_STRENGTH, GM.maxStrengthW },
-            { Stats.MAX_DEFENSE, GM.maxDefenseW },
-            { Stats.MAX_MAGIC_ATTACK, GM.maxMagicAttackW },
-            { Stats.MAX_MIND, GM.maxMindW },
-            { Stats.MAX_MAGIC_DEFENSE, GM.maxMagicDefenseW },
-            { Stats.MAX_DEX, GM.maxDexterityW },
-            { Stats.MAX_SPEED, GM.maxSpeedW },
-            { Stats.MAX_PRECISION, GM.maxPrecisionW },
-            { Stats.MAX_EVASION, GM.maxEvasionW },
-            { Stats.MAX_CRIT_PROB, GM.maxCritProbW }
+            { Stats.ATTACK, GM.maxAttackW },
+            { Stats.STRENGTH, GM.maxStrengthW },
+            { Stats.DEFENSE, GM.maxDefenseW },
+            { Stats.MAGIC_ATTACK, GM.maxMagicAttackW },
+            { Stats.MIND, GM.maxMindW },
+            { Stats.MAGIC_DEFENSE, GM.maxMagicDefenseW },
+            { Stats.DEX, GM.maxDexterityW },
+            { Stats.SPEED, GM.maxSpeedW },
+            { Stats.PRECISION, GM.maxPrecisionW },
+            { Stats.EVASION, GM.maxEvasionW },
+            { Stats.CRIT_PROB, GM.maxCritProbW }
         };
     }
 

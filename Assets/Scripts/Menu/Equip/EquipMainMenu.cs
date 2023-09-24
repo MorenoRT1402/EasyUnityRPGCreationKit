@@ -69,7 +69,7 @@ public class EquipMainMenu : MonoBehaviour
     {
         changeEquipPanel.SetActive(false);
         equipPanel.SetActive(true);
-        initDefaultStats();
+        InitDefaultStats();
         nameTMP.text = character.Stats.Name;
         jobTMP.text = character.Stats.Job.Name;
         descriptionTMP.text = "";
@@ -78,12 +78,12 @@ public class EquipMainMenu : MonoBehaviour
         setDefaultStats();
     }
 
-    private void initDefaultStats()
+    private void InitDefaultStats()
     {
         defaultStatsToShow = new List<Stats>(){
-            Stats.MAX_ATTACK, Stats.MAX_PRECISION,
-            Stats.MAX_DEFENSE, Stats.MAX_EVASION,
-            Stats.MAX_MAGIC_ATTACK, Stats.MAX_MAGIC_DEFENSE
+            Stats.ATTACK, Stats.PRECISION,
+            Stats.DEFENSE, Stats.EVASION,
+            Stats.MAGIC_ATTACK, Stats.MAGIC_DEFENSE
         };
     }
 
@@ -97,7 +97,7 @@ public class EquipMainMenu : MonoBehaviour
         UpdateUI();
     }
 
-    private void setStats(EquipmentSO oldEquipmentSO, EquipmentSO newEquipmentSO)
+    private void SetStats(EquipmentSO oldEquipmentSO, EquipmentSO newEquipmentSO)
     {
         Clear(statsSpacer);
 
@@ -112,7 +112,7 @@ public class EquipMainMenu : MonoBehaviour
                     GameObject statModInstance = Instantiate(statModPrefab, statsSpacer.transform);
                     StatMod statModHandler = statModInstance.GetComponent<StatMod>();
                     string name = GeneralManager.Instance.nameOfStats[statMod.Key];
-                    float oldValue = character.Stats.Get(statMod.Key);
+                    float oldValue = character.Stats.GetBase(statMod.Key);
                     float newValue = oldValue + statMod.Value;
                     statModHandler.SetData(name, oldValue, newValue);
                     statModHandler.UpdateUI(true);
@@ -135,8 +135,8 @@ public class EquipMainMenu : MonoBehaviour
                 GameObject statModInstance = Instantiate(statModPrefab, statsSpacer.transform);
                 StatMod statModHandler = statModInstance.GetComponent<StatMod>();
                 string statName = GM.nameOfStats[statToShow];
-                float oldValue = character.Stats.Get(statToShow);
-                float newValue = character.Stats.Get(statToShow);
+                float oldValue = character.Stats.GetBase(statToShow);
+                float newValue = character.Stats.GetBase(statToShow);
                 statModHandler.SetData(statName, oldValue, newValue);
                 statModHandler.UpdateUI(false);
             }
@@ -292,6 +292,6 @@ public class EquipMainMenu : MonoBehaviour
         EquipmentSO actualEquip = character.GetEquipment(part);
         EquipmentSO newEquip = equip;
 
-        setStats(actualEquip, newEquip);
+        SetStats(actualEquip, newEquip);
     }
 }

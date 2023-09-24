@@ -3,6 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Stats
+{
+    LEVEL, JOB_LEVEL,
+    HP, HP_MAX, MP, MP_MAX, STAMINA, STAMINA_MAX,
+    STRENGTH, DEX, MIND,
+    ATTACK, MAGIC_ATTACK,
+    DEFENSE, MAGIC_DEFENSE,
+    SPEED, PRECISION, CRIT_PROB, EVASION,
+}
+
 [CreateAssetMenu(menuName = "Characters/Create Data/Stats")]
 public class InitialStatsSO : ScriptableObject
 {
@@ -28,17 +38,17 @@ public class InitialStatsSO : ScriptableObject
             { Stats.HP_MAX, life },
             { Stats.MP_MAX, mana },
             { Stats.STAMINA_MAX, stamina },
-            { Stats.MAX_ATTACK, attack },
-            { Stats.MAX_STRENGTH, strength },
-            { Stats.MAX_DEX, dexterity },
-            { Stats.MAX_MAGIC_ATTACK, magicAttack },
-            { Stats.MAX_MIND, mind },
-            { Stats.MAX_DEFENSE, defense },
-            { Stats.MAX_MAGIC_DEFENSE, magicDefense },
-            { Stats.MAX_SPEED, speed },
-            { Stats.MAX_CRIT_PROB, critProb },
-            { Stats.MAX_PRECISION, precision },
-            { Stats.MAX_EVASION, evasion }
+            { Stats.ATTACK, attack },
+            { Stats.STRENGTH, strength },
+            { Stats.DEX, dexterity },
+            { Stats.MAGIC_ATTACK, magicAttack },
+            { Stats.MIND, mind },
+            { Stats.DEFENSE, defense },
+            { Stats.MAGIC_DEFENSE, magicDefense },
+            { Stats.SPEED, speed },
+            { Stats.CRIT_PROB, critProb },
+            { Stats.PRECISION, precision },
+            { Stats.EVASION, evasion }
         };
     }
 

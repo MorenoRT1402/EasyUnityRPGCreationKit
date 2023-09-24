@@ -257,7 +257,7 @@ public class NCalcManager : Singleton<NCalcManager>
         {
             var stat = kvp.Key;
             var parameterName = kvp.Value;
-            expression.Parameters[prefix + parameterName] = handler.Stats.Get(stat);
+            expression.Parameters[prefix + parameterName] = handler.Stats.GetActual(stat);
         }
     }
 
@@ -293,7 +293,7 @@ public class NCalcManager : Singleton<NCalcManager>
         float total = 0;
         for (int i = 0; i < groupList.Count; i++)
         {
-            total += groupList[i].GetComponent<FighterStateMachine>().Hero.Stats.Get(stat);
+            total += groupList[i].GetComponent<FighterStateMachine>().Hero.Stats.GetActual(stat);
         }
         return total;
     }

@@ -37,17 +37,17 @@ public class StatsGrowthSO : ScriptableObject
         { Stats.HP_MAX, hp},
         { Stats.MP_MAX, mp},
         { Stats.STAMINA_MAX, stamina},
-        { Stats.MAX_ATTACK, attack},
-        { Stats.MAX_STRENGTH, strength},
-        { Stats.MAX_DEX, dexterity},
-        { Stats.MAX_MAGIC_ATTACK, magicAttack},
-        { Stats.MAX_MIND, mind},
-        { Stats.MAX_DEFENSE, defense},
-        { Stats.MAX_MAGIC_DEFENSE, magicDefense},
-        { Stats.MAX_SPEED, speed},
-        { Stats.MAX_PRECISION, precision},
-        { Stats.MAX_EVASION, evasion},
-        { Stats.MAX_CRIT_PROB, critProb}
+        { Stats.ATTACK, attack},
+        { Stats.STRENGTH, strength},
+        { Stats.DEX, dexterity},
+        { Stats.MAGIC_ATTACK, magicAttack},
+        { Stats.MIND, mind},
+        { Stats.DEFENSE, defense},
+        { Stats.MAGIC_DEFENSE, magicDefense},
+        { Stats.SPEED, speed},
+        { Stats.PRECISION, precision},
+        { Stats.EVASION, evasion},
+        { Stats.CRIT_PROB, critProb}
 
         };
     }

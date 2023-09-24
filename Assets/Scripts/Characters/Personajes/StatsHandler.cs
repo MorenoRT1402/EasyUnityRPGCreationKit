@@ -6,31 +6,6 @@ using UnityEditor.Scripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-
-public enum Stats
-{
-    HP_MAX, MP_MAX, STAMINA_MAX, STRENGTH, DEX, MIND, SPEED, PRECISION, CRIT_PROB, EVASION,
-    HP,
-    MP,
-    STAMINA,
-    LEVEL, JOB_LEVEL,
-    DEFENSE,
-    MAGIC_DEFENSE,
-    ATTACK,
-    MAGIC_ATTACK,
-    MAX_ATTACK,
-    MAX_STRENGTH,
-    MAX_DEFENSE,
-    MAX_MIND,
-    MAX_MAGIC_DEFENSE,
-    MAX_MAGIC_ATTACK,
-    MAX_DEX,
-    MAX_SPEED,
-    MAX_PRECISION,
-    MAX_EVASION,
-    MAX_CRIT_PROB
-}
-
 public class StatsHandler
 {
     public enum StatsReference { CHARACTER, JOB }
@@ -50,7 +25,7 @@ public class StatsHandler
     private float actualMana, actualStamina, actualStrength, actualAttack, actualDexterity, actualMind, actualMagicAttack, actualDefense, actualMagicDefense, actualSpeed;
 
     private float actualCritProb, actualPrecision, actualEvasion;
-    public Dictionary<Stats, float> statsDict;
+    public Dictionary<Stats, float> statsDict, actualStatsDict;
     public List<Ailment> ailments;
     //    [Range(0f, 100f)] private float moralActual;
 
@@ -88,17 +63,17 @@ public class StatsHandler
     public float MaxLife => GetSum(Stats.HP_MAX);
     public float MaxMana => GetSum(Stats.MP_MAX);
     public float MaxStamina => GetSum(Stats.STAMINA_MAX);
-    public float MaxAttack => GetSum(Stats.MAX_ATTACK);
-    public float MaxStrength => GetSum(Stats.MAX_STRENGTH);
-    public float MaxDefense => GetSum(Stats.MAX_DEFENSE);
-    public float MaxDexterity => GetSum(Stats.MAX_DEX);
-    public float MaxMagicAttack => GetSum(Stats.MAX_MAGIC_ATTACK);
-    public float MaxMind => GetSum(Stats.MAX_MIND);
-    public float MaxMagicDefense => GetSum(Stats.MAX_MAGIC_DEFENSE);
-    public float MaxSpeed => GetSum(Stats.MAX_SPEED);
-    public float MaxCritProb => GetSum(Stats.MAX_CRIT_PROB);
-    public float MaxPrecision => GetSum(Stats.MAX_PRECISION);
-    public float MaxEvasion => GetSum(Stats.MAX_EVASION);
+    public float MaxAttack => GetSum(Stats.ATTACK);
+    public float MaxStrength => GetSum(Stats.STRENGTH);
+    public float MaxDefense => GetSum(Stats.DEFENSE);
+    public float MaxDexterity => GetSum(Stats.DEX);
+    public float MaxMagicAttack => GetSum(Stats.MAGIC_ATTACK);
+    public float MaxMind => GetSum(Stats.MIND);
+    public float MaxMagicDefense => GetSum(Stats.MAGIC_DEFENSE);
+    public float MaxSpeed => GetSum(Stats.SPEED);
+    public float MaxCritProb => GetSum(Stats.CRIT_PROB);
+    public float MaxPrecision => GetSum(Stats.PRECISION);
+    public float MaxEvasion => GetSum(Stats.EVASION);
 
     public BaseActiveSkill BasicAttack => basicAttack;
     public List<SkillBase> Skills => skills;
@@ -147,10 +122,35 @@ public class StatsHandler
 
         equip ??= character.InitialEquip;
 
-        InitDict();
+        InitBaseDict();
+        InitActualDict();
     }
 
-    private void InitDict()
+    private void InitBaseDict()
+    {
+        statsDict = new Dictionary<Stats, float>(){
+            { Stats.LEVEL, character.Level},
+            { Stats.JOB_LEVEL, job.Level},
+            { Stats.HP, MaxLife },
+            { Stats.HP_MAX, MaxLife },
+            { Stats.MP, MaxMana },
+            { Stats.MP_MAX, MaxMana },
+            { Stats.STAMINA, actualStamina },
+            { Stats.STAMINA_MAX, MaxStamina },
+            { Stats.ATTACK, MaxAttack },
+            { Stats.STRENGTH, MaxStrength },
+            { Stats.DEFENSE, MaxDefense },
+            { Stats.MAGIC_ATTACK, MaxMagicAttack },
+            { Stats.MIND, MaxMind },
+            { Stats.MAGIC_DEFENSE, MaxMagicDefense },
+            { Stats.DEX, MaxDexterity },
+            { Stats.SPEED, MaxSpeed },
+            { Stats.PRECISION, MaxPrecision },
+            { Stats.EVASION, MaxEvasion },
+            { Stats.CRIT_PROB, MaxCritProb },
+        };
+    }
+        private void InitActualDict()
     {
         statsDict = new Dictionary<Stats, float>(){
             { Stats.LEVEL, character.Level},
@@ -162,27 +162,16 @@ public class StatsHandler
             { Stats.STAMINA, actualStamina },
             { Stats.STAMINA_MAX, MaxStamina },
             { Stats.ATTACK, ActualAttack },
-            { Stats.MAX_ATTACK, MaxAttack },
             { Stats.STRENGTH, actualStrength },
-            { Stats.MAX_STRENGTH, MaxStrength },
             { Stats.DEFENSE, actualDefense },
-            { Stats.MAX_DEFENSE, MaxDefense },
             { Stats.MAGIC_ATTACK, actualMagicAttack },
-            { Stats.MAX_MAGIC_ATTACK, MaxMagicAttack },
             { Stats.MIND, actualMind },
-            { Stats.MAX_MIND, MaxMind },
             { Stats.MAGIC_DEFENSE, actualMagicDefense },
-            { Stats.MAX_MAGIC_DEFENSE, MaxMagicDefense },
             { Stats.DEX, actualDexterity },
-            { Stats.MAX_DEX, MaxDexterity },
             { Stats.SPEED, actualSpeed },
-            { Stats.MAX_SPEED, MaxSpeed },
             { Stats.PRECISION, actualPrecision },
-            { Stats.MAX_PRECISION, MaxPrecision },
             { Stats.EVASION, actualEvasion },
-            { Stats.MAX_EVASION, MaxEvasion },
             { Stats.CRIT_PROB, actualCritProb },
-            { Stats.MAX_CRIT_PROB, MaxCritProb },
         };
     }
     public Dictionary<Stats, float> GetDictAtr()
@@ -190,15 +179,21 @@ public class StatsHandler
         return statsDict;
     }
 
-    public float Get(Stats stat)
+    public float GetBase(Stats stat)
     {
-        InitDict();
+        InitBaseDict();
+        return statsDict[stat];
+    }
+
+        public float GetActual(Stats stat)
+    {
+        InitBaseDict();
         return statsDict[stat];
     }
 
     internal void ModStats(Stats stat, ModScale scale, float amount)
     {
-        float actualValue = Get(stat);
+        float actualValue = GetBase(stat);
         float totalAmount = scale == ModScale.SUM ? amount : actualValue * amount;
 
         Add(stat, totalAmount, StatsReference.CHARACTER);
