@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(menuName = "Characters/Create Data/Stats")]
+[CreateAssetMenu(menuName = "Characters/Create Data/Base")]
 [Serializable]
 public class PersonajeStatsSO : ScriptableObject
 {
@@ -25,12 +25,9 @@ public class PersonajeStatsSO : ScriptableObject
     public string initialName;
     public int initialLevel, initialMaxLevel;
     public string LevelUpFormula;
-    public float initialLife, initialMana, initialStamina, initialAttack, initialStrength, initialDexterity, initialMagicAttack, initialMind, initialDefense, initialMagicDefense, initialSpeed;
-
-    public float initialCritProb, initialPrecision, initialEvasion;
-
     public int InitialExp;
 
+    public InitialStatsSO initialStats;
 
     public BaseActiveSkill initialBasicAttack;
 
@@ -54,4 +51,8 @@ public class PersonajeStatsSO : ScriptableObject
         handler.DefaultValues();
     }
 
+    internal float Get(Stats stat)
+    {
+        return initialStats.Get(stat);
+    }
 }

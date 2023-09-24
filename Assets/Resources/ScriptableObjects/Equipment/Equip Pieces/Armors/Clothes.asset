@@ -7,36 +7,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de9d3f525a5318d46ae39abbec4afc3a, type: 3}
   m_Name: Clothes
   m_EditorClassIdentifier: 
   itemName: Clothes
   itemDescription: 
+  icon: {fileID: 0}
   importance: 0
   usable: 0
   consumable: 0
   power: 0
   effect: {fileID: 0}
-  price: 0
+  buyPrice: 0
+  sellPrice: 0
   maxAmount: 99
   equipmentType: LIGHT_ARMOR
   equipUbications:
   - Body
   equipUbicationsDisabled: []
   basicAttack: {fileID: 0}
-  hpMax: 0
-  mpMax: 0
-  staminaMax: 0
-  strength: 0
-  attack: 0
-  defense: 1
-  mind: 0
-  magicAttack: 0
-  magicalDefense: 1
-  dexterity: 0
-  speed: 0
-  precision: 0
-  evasion: 0
-  critProb: 0
+  skillsAdded: []
+  statsMod: {fileID: 11400000, guid: 7e99db2c8049f0f488a6f63227bd9485, type: 2}
+  affinities: {fileID: 0}

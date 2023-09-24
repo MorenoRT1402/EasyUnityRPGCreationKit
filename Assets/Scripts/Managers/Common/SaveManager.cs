@@ -174,7 +174,8 @@ public class SaveManager : Singleton<SaveManager>
 
     public static void SaveEvents(bool playerInclude)
     {
-        if (GameManager.InBattle || GameManager.InMainScreen) return;
+
+        if (GameManager.InBattle || GameManager.InMainScreen || PartyManager.Instance.PartyGameObjects == null) return;
 
         //Locate all characterMovements in Scene
         List<CharacterMovement> characterMovements = new();
@@ -183,7 +184,7 @@ public class SaveManager : Singleton<SaveManager>
         //Save each of them
         if (characterMovements.Count > 0)
             for (int i = 0; i < characterMovements.Count; i++)
-                if (characterMovements[i].enabled)
+//                if (characterMovements[i].enabled)
                 {
                     CharacterMovement cM = characterMovements[i];
                     EventData eventData = GetNewEventData(cM);
@@ -193,16 +194,18 @@ public class SaveManager : Singleton<SaveManager>
         if (!playerInclude)
         {
             CharacterMovement leaderMovement = PartyManager.Instance.GetLeader().GetComponent<CharacterMovement>();
-            GetEventData(leaderMovement).SetPosition(SceneHandler.ActualPosition, 0);
+            EventData playerEventData = GetEventData(leaderMovement);
+            playerEventData.SetPosition(SceneHandler.ActualPosition, 0);
         }
 
     }
 
     private static EventData GetEventData(CharacterMovement cM)
     {
-        for (int i = 0; i < eventDatas.Count; i++)
+        for (int i = 0; i < eventDatas.Count; i++){
             if (eventDatas[i].id == cM.id)
                 return eventDatas[i];
+        }
         return null;
     }
 

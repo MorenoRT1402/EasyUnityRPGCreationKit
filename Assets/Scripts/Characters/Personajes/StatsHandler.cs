@@ -519,14 +519,14 @@ public class StatsHandler
         dead = v;
     }
 
-    public void CharacterLevelUp(float nextLevelExp)
+    public void CharacterLevelUp()
     {
-        character.LevelUp(nextLevelExp);
+        character.LevelUp();
     }
 
-    internal void JobLevelUp(float nextLevelJP)
+    internal void JobLevelUp()
     {
-        job.LevelUp(nextLevelJP);
+        job.LevelUp();
     }
 
     internal void ActualMult(Stats stat, float statMult)

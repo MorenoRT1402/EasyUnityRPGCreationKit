@@ -10,41 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d0d0a6f5e7088d44b20870788743294, type: 3}
-  m_Name: Slime
+  m_Name: BerserkOrc
   m_EditorClassIdentifier: 
   showInitialFields: 0
   showBaseFields: 0
-  spriteInMenu: {fileID: -60482792, guid: c3aff108e2f543b4a8bf3c6f8992b49b, type: 3}
+  spriteInMenu: {fileID: 1715209255, guid: 4eb59419c1b97ed4c940bfdac4435ebf, type: 3}
   equipmentTypeEquipable: []
   equipParts: []
   initialEquipment: []
-  initialName: Slime
-  initialLevel: 1
+  initialName: Berserk Orc
+  initialLevel: 7
   initialMaxLevel: 20
-  LevelUpFormula: Pow({lvl}, 3.11) + 5
-  initialLife: 6
-  initialMana: 20
-  initialStamina: 10
-  initialAttack: 0
-  initialStrength: 3
-  initialDexterity: 5
-  initialMagicAttack: 0
-  initialMind: 5
-  initialDefense: 1
-  initialMagicDefense: 2
-  initialSpeed: 6
-  initialCritProb: 3.5
-  initialPrecision: 90
-  initialEvasion: 5
+  LevelUpFormula: Pow({lvl}, 3.12) + 5 * lvl
   InitialExp: 0
+  initialStats: {fileID: 11400000, guid: 7c585b65f5493d244806de8134c5eda8, type: 2}
   initialBasicAttack: {fileID: 11400000, guid: d83d577dcdaa34a4b858e451c1c2bfd1, type: 2}
-  initialSkills: []
+  initialSkills:
+  - {fileID: 11400000, guid: 682d0b2d3a856264fa72b05cc85c0137, type: 2}
   InitialGuardSkill: {fileID: 11400000, guid: e65681a4038fbfa478ac61ada2958834, type: 2}
   InitialWaitSkill: {fileID: 11400000, guid: bda49b8e4cf9e8e4a957a509dbdd81fe, type: 2}
   InitialFleeSkill: {fileID: 11400000, guid: c721ad4696bba50459c0b679167daaf8, type: 2}
-  ExpFormula: 200
-  MoneyFormula: 1
-  JobPointsFormula: 1
-  drops:
-  - {fileID: 11400000, guid: 524febb41f7ae2247b47697da2d8cfd0, type: 2}
-  - {fileID: 11400000, guid: ab19a5d8bd77a214f9416d041bc54d1b, type: 2}
+  ExpFormula: 340
+  MoneyFormula: 5
+  JobPointsFormula: 2
+  drops: []

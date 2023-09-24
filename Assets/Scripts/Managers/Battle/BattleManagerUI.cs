@@ -83,7 +83,7 @@ public class BattleManagerUI : Singleton<BattleManagerUI>
     [Header("Other")]
     [SerializeField] private Button backButton;
     [SerializeField] private Button finishButton;
-    [SerializeField] private SpriteRenderer background;
+    [SerializeField] private Image background;
 
     private BattleStateMachine BSM;
     private bool notifying;

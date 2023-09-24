@@ -196,10 +196,10 @@ public class PersonajeHandler : MonoBehaviour
         personajeExperiencia.AddJP(jp);
     }
 
-    internal void CharacterLevelUp(float nextLevelExp)
+    internal void CharacterLevelUp()
     {
         PersonajeStats character = stats.Character;
-        stats.CharacterLevelUp(nextLevelExp);
+        stats.CharacterLevelUp();
         Dictionary<Stats, string> growthDict = sO.statsGrowth.growthFormulas;
         foreach (KeyValuePair<Stats, string> stat in growthDict)
         {
@@ -222,11 +222,11 @@ public class PersonajeHandler : MonoBehaviour
 
     }
 
-    internal void CharacterJobLevelUp(float nextLevelJP)
+    internal void CharacterJobLevelUp()
     {
         Job job = stats.Job;
         JobSO jobSO = sO.job;
-        stats.JobLevelUp(nextLevelJP);
+        stats.JobLevelUp();
         Dictionary<Stats, string> growthDict = jobSO.growthFormulas;
         foreach (KeyValuePair<Stats, string> stat in growthDict)
         {

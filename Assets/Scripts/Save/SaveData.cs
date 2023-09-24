@@ -69,14 +69,21 @@ public class SaveData
         SaveManager.switches = switches;
         SaveManager.strings = strings;
         GameManager.secsPlaying = hoursPlaying * 3600 + minutesPlaying * 60 + secondsPlaying;
-        InventoryManager.Instance.moneyInPosesion = money;
         SaveManager.eventDatas = eventDatas.ToList();
         ubication.Load();
-        foreach (ItemInventoryData itemInventoryData in inventoryData)
-            itemInventoryData.Load();
+        LoadInventory();
         LoadCharacterDatas();
 
         SceneHandler.Instance.ChangeToScene(savedScene, false);
+    }
+
+    private void LoadInventory()
+    {
+        InventoryManager.Instance.moneyInPosesion = money;
+
+        InventoryManager.Instance.items.Clear();
+        foreach (ItemInventoryData itemInventoryData in inventoryData)
+            itemInventoryData.Load();
     }
 
     private void LoadCharacterDatas()
@@ -99,7 +106,7 @@ public class SaveData
     {
         foreach (CharacterData characterData in partyData)
             characterData.Load(party);
-            PartyManager.Instance.SetupPlayer();
+        PartyManager.Instance.SetupPlayer();
     }
 
     internal DateTime GetDateTime()

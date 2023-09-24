@@ -299,6 +299,7 @@ public class PartyManager : Singleton<PartyManager>
 
     internal PersonajeHandler GetLeader()
     {
+        if(PartyGameObjects == null) return null;
         if (PartyGameObjects.Count > 0)
             for (int i = 0; i < PartyGameObjects.Count; i++)
             {

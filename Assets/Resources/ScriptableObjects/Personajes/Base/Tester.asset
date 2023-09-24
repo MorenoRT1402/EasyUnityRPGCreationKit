@@ -30,21 +30,8 @@ MonoBehaviour:
   initialLevel: 1
   initialMaxLevel: 50
   LevelUpFormula: Pow({lvl}, 3.1) + 5 * lvl
-  initialLife: 20
-  initialMana: 15
-  initialStamina: 15
-  initialAttack: 0
-  initialStrength: 4
-  initialDexterity: 5
-  initialMagicAttack: 0
-  initialMind: 5
-  initialDefense: 0
-  initialMagicDefense: 0
-  initialSpeed: 7
-  initialCritProb: 3
-  initialPrecision: 95
-  initialEvasion: 3
   InitialExp: 0
+  initialStats: {fileID: 11400000, guid: 877f0573c03e63d4581c533730435535, type: 2}
   initialBasicAttack: {fileID: 11400000, guid: d83d577dcdaa34a4b858e451c1c2bfd1, type: 2}
   initialSkills:
   - {fileID: 11400000, guid: 4af53ecc2e709d0488388dd24288c2f9, type: 2}

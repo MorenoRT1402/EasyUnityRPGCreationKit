@@ -16,35 +16,16 @@ MonoBehaviour:
   InitialLevel: 1
   InitialMaxLevel: 20
   LevelUpFormula: Pow({jlv}, 2) + 5
-  InitialLife: 9
-  InitialMana: 0
-  InitialStamina: 5
-  InitialStrength: 3
-  InitialDex: 1
-  InitialMind: 0
-  InitialDefense: 1
-  InitialMagicDefense: 0
-  InitialSpeed: 1
-  InitialCritProb: 0
-  InitialPrecision: 0
-  InitialEvasion: 0
   InitialExp: 0
   InitialExpNextLevel: 0
   InitialExpReqMult: 0
+  initialStats: {fileID: 11400000, guid: f0011a4a6d86bb748b87bd3a6594bfae, type: 2}
   InitialBasicAttack: {fileID: 0}
   InitialSkills: []
   InitialGuardSkill: {fileID: 0}
   InitialWaitSkill: {fileID: 0}
   InitialFleeSkill: {fileID: 0}
-  lifeGrowth: 10
-  manaGrowth: 5
-  staminaGrowth: 2
-  strengthGrowth: 1
-  defenseGrowth: rndm
-  dexterityGrowth: 1
-  mindGrowth: 1
-  magicDefenseGrowth: rndm
-  speedGrowth: 1
-  critProbGrowth: 0.0
-  precisionGrowth: 0.0
-  evasionGrowth: 0.0
+  equipmentTypeEquipable: []
+  equipParts: []
+  statsGrowth: {fileID: 11400000, guid: c03db96ce273021429c4a3a10aae7a12, type: 2}
+  skillsLearn: {fileID: 0}

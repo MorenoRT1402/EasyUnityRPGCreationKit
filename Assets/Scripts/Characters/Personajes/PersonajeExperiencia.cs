@@ -45,7 +45,7 @@ public class PersonajeExperiencia
         if (jp > 0)
         {
             job.AddExp(jp);
-            while (job.Exp >= calculateJobReqExp(job.Level))
+            while (job.Exp >= CalculateJobReqExp(job.Level))
             {
                 UpdateJobLevel();
             }
@@ -56,7 +56,7 @@ public class PersonajeExperiencia
     {
         if (job.Level < job.MaxLevel)
         {
-            handler.CharacterJobLevelUp(calculateJobReqExp(job.Level));
+            handler.CharacterJobLevelUp();
         }
     }
 
@@ -64,7 +64,7 @@ public class PersonajeExperiencia
     {
         if (stats.Level < stats.MaxLevel)
         {
-            handler.CharacterLevelUp(calculateReqExp(stats.Level));
+            handler.CharacterLevelUp();
         }
     }
 
@@ -112,7 +112,7 @@ public class PersonajeExperiencia
         return calculateReqExp(actualLevel) - calculateReqExp(actualLevel - 1);
     }
 
-    private float calculateJobReqExp(int level)
+    private float CalculateJobReqExp(int level)
     {
         if (job.InitialLevel != 0 && level == 0) return 0;
 
@@ -128,14 +128,14 @@ public class PersonajeExperiencia
     internal float GetParcialActualJobExp()
     {
         int actualLevel = job.Level;
-        float RequiredExpPreviousLevel = calculateJobReqExp(actualLevel - 1);
+        float RequiredExpPreviousLevel = CalculateJobReqExp(actualLevel - 1);
         return Mathf.Max(job.Exp - RequiredExpPreviousLevel, 0);
     }
 
     internal float GetRelativeJobExpReq()
     {
         int actualLevel = job.Level;
-        return calculateJobReqExp(actualLevel) - calculateJobReqExp(actualLevel - 1);
+        return CalculateJobReqExp(actualLevel) - CalculateJobReqExp(actualLevel - 1);
     }
 
     private int ExpFormula(int nivel) //For recommended formula

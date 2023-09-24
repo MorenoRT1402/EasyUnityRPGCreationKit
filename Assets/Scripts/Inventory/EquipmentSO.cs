@@ -15,55 +15,32 @@ public class EquipmentSO : ItemSO
     public List<SkillBase> skillsAdded;
 
     [Header("Stats mod")]
-    public float hpMax;
-    public float mpMax, staminaMax, strength, attack, defense, mind, magicAttack, magicDefense, dexterity, speed, precision, evasion, critProb;
+    [SerializeField] private InitialStatsSO statsMod;
 
     [Header("Elemental mod")]
     [SerializeField] PersonajeAffinitiesSO affinities;
 
-    private Dictionary<Stats, float> statsDict;
+    private BaseStats stats;
     private PersonajeAffinities personajeAffinities;
 
     //    public Dictionary<Stats, float> StatsDict;
     public Dictionary<Stats, float> StatsWeightDict;
 
-    private void Awake()
-    {
+    private void OnEnable() {
         Init();
-
     }
 
     private void Init()
     {
+        stats = new(statsMod);
         personajeAffinities = new(affinities);
-        InitStatsDict();
-    }
-
-    private void InitStatsDict()
-    {
-        statsDict = new Dictionary<Stats, float>
-        {
-            { Stats.HP_MAX, hpMax },
-            { Stats.MP_MAX, mpMax },
-            { Stats.STAMINA_MAX, staminaMax },
-            { Stats.MAX_ATTACK, attack },
-            { Stats.MAX_STRENGTH, strength },
-            { Stats.MAX_DEFENSE, defense },
-            { Stats.MAX_MAGIC_ATTACK, magicAttack },
-            { Stats.MAX_MIND, mind },
-            { Stats.MAX_MAGIC_DEFENSE, magicDefense },
-            { Stats.MAX_DEX, dexterity },
-            { Stats.MAX_SPEED, speed },
-            { Stats.MAX_PRECISION, precision },
-            { Stats.MAX_EVASION, evasion },
-            { Stats.MAX_CRIT_PROB, critProb }
-        };
+        InitStatsWeightDict();
     }
 
     private void InitStatsWeightDict()
     {
         GeneralManager GM = GeneralManager.Instance;
-        StatsWeightDict = new Dictionary<Stats, float>
+        StatsWeightDict = new Dictionary<Stats, float>()
         {
             { Stats.HP_MAX, GM.maxHPW },
             { Stats.MP_MAX, GM.maxMPW },
@@ -85,11 +62,10 @@ public class EquipmentSO : ItemSO
     internal float Get(Stats stat)
     {
         float sum = 0;
-        InitStatsDict();
-        if (statsDict.TryGetValue(stat, out float value))
-        {
-            sum += value;
-        }
+
+        stats ??= new(statsMod);
+
+        sum += stats.Get(stat);
         sum += SkillsGet(stat);
 
         return sum;
@@ -153,8 +129,8 @@ public class EquipmentSO : ItemSO
 
     private Dictionary<Stats, float> GetStatsModded() //return stats which increments or decrements
     {
-        InitStatsDict();
         Dictionary<Stats, float> statsModded = new();
+        Dictionary<Stats, float> statsDict = stats.GetStats();
 
         foreach (KeyValuePair<Stats, float> statMod in statsDict)
             if (statMod.Value != 0f) statsModded.Add(statMod.Key, statMod.Value);
@@ -166,8 +142,8 @@ public class EquipmentSO : ItemSO
     {
         float count = 0;
 
-        InitStatsDict();
         InitStatsWeightDict();
+        Dictionary<Stats, float> statsDict = stats.GetStats();
 
         foreach (KeyValuePair<Stats, float> stat in statsDict)
             count += stat.Value != 0 ? stat.Value / StatsWeightDict[stat.Key] : 0;

@@ -9,6 +9,7 @@ public class JobData
 {
     public string jobPath;
     public string jobName;
+    Dictionary<Stats, float> stats;
     public int jobLevel, jobMaxLevel, jobPoints;
     public float jobLife, jobMana, jobStamina, jobAttack, jobStrength, jobDexterity, jobMagicAttack, jobMind, jobDefense, jobMagicDefense, jobSpeed;
     public float jobCritProb, jobPrecision, jobEvasion;
@@ -35,21 +36,7 @@ public class JobData
         jobMaxLevel = job.MaxLevel;
         jobPoints = job.Exp;
 
-        jobLife = job.Life;
-        jobMana = job.Mana;
-        jobStamina = job.Stamina;
-        jobAttack = job.Attack;
-        jobStrength = job.Strength;
-        jobDexterity = job.Dexterity;
-        jobMagicAttack = job.MagicAttack;
-        jobMind = job.Mind;
-        jobDefense = job.Defense;
-        jobMagicDefense = job.MagicDefense;
-        jobSpeed = job.Speed;
-
-        jobCritProb = job.CritProb;
-        jobPrecision = job.Precision;
-        jobEvasion = job.Evasion;
+        stats = job.Stats.GetStats();
 
         jobBasicAttackPath = GeneralManager.ToPath(job.BasicAttack);
         jobSkillsPaths = GeneralManager.ToPath(job.Skills).ToArray();
@@ -73,13 +60,12 @@ public class JobData
     {
         JobSO sO = (JobSO)GeneralManager.To(jobPath);
         int[] expArray = new int[3] { jobLevel, jobMaxLevel, jobPoints };
-        float[] statsArray = new float[] { jobLife, jobMana, jobStamina, jobAttack, jobStrength, jobDefense, jobMagicAttack, jobMind, jobMagicDefense, jobDexterity, jobSpeed, jobCritProb, jobPrecision, jobEvasion };
         BaseActiveSkill basicAttack = (BaseActiveSkill)GeneralManager.To(jobBasicAttackPath);
         List<SkillBase> skills = GeneralManager.To<SkillBase>(jobSkillsPaths.ToList());
         SpecialActiveSkill[] specialSkillsArray = GetSpecialSkillsArray();
         List<EquipPartSO> equipParts = GeneralManager.To<EquipPartSO>(equipPartsPaths);
 
-        return new(sO, jobName, expArray, statsArray, basicAttack, skills, specialSkillsArray, jobEquipmentTypeEquipable.ToList(), equipParts);
+        return new(sO, jobName, expArray, stats, basicAttack, skills, specialSkillsArray, jobEquipmentTypeEquipable.ToList(), equipParts);
     }
 
     private SpecialActiveSkill[] GetSpecialSkillsArray()

@@ -32,10 +32,6 @@ public class ItemSO : ScriptableObject
     public float SellPrice => sellPrice;
     public int MaxAmount => maxAmount;
 
-    private void Start() {
-        effect.power = power;
-    }
-
     internal void Use(PersonajeHandler user, PersonajeHandler target)
     {
         effect.power = power;

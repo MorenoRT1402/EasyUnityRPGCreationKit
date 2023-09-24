@@ -13,8 +13,7 @@ public class CharacterData
     public string personajeStatsPath;
     public string characterName;
     public int level, maxLevel, experience;
-    public float life, mana, stamina, attack, strength, dexterity, magicAttack, mind, defense, magicDefense, speed;
-    public float critProb, precision, evasion;
+    Dictionary<Stats, float> statsDict;
     public string basicAttackPath;
     public string[] skillsPaths;
     public string guardSkillPath, waitSkillPath, fleeSkillPath;
@@ -79,21 +78,7 @@ public class CharacterData
         maxLevel = character.MaxLevel;
         experience = character.Exp;
 
-        life = character.Life;
-        mana = character.Mana;
-        stamina = character.Stamina;
-        attack = character.Attack;
-        strength = character.Strength;
-        dexterity = character.Dexterity;
-        magicAttack = character.MagicAttack;
-        mind = character.Mind;
-        defense = character.Defense;
-        magicDefense = character.MagicDefense;
-        speed = character.Speed;
-
-        critProb = character.CritProb;
-        precision = character.Precision;
-        evasion = character.Evasion;
+        SetStatsDict(character);
 
         basicAttackPath = GeneralManager.ToPath(character.BasicAttack);
         skillsPaths = GeneralManager.ToPath(character.Skills).ToArray();
@@ -104,6 +89,14 @@ public class CharacterData
         equipmentTypeEquipable = character.equipmentTypeEquipable.ToArray();
         equipPartsPaths = GeneralManager.ToPath(character.equipParts);
     }
+
+    private void SetStatsDict(PersonajeStats character)
+    {
+        Dictionary<Stats, float> chStats = character.Stats.statsDict;
+        statsDict = new();
+        foreach (KeyValuePair<Stats, float> pair in chStats)
+            statsDict[pair.Key] = pair.Value;
+    }
     #endregion
 
     internal void Load(List<GameObject> party)
@@ -111,7 +104,7 @@ public class CharacterData
         PersonajeHandler handler = ToHandler();
         GameObject characterGO = PartyManager.Instance.CreateCharacterGO(handler);
         UnityEngine.Object.DontDestroyOnLoad(characterGO);
-        
+
         party.Add(characterGO);
     }
 
@@ -130,13 +123,12 @@ public class CharacterData
         //PersonajeStats
         PersonajeStatsSO personajeStatsSO = (PersonajeStatsSO)GeneralManager.To(personajeStatsPath);
         int[] expArray = new int[3] { level, maxLevel, experience };
-        float[] statsArray = new float[] { life, mana, stamina, attack, strength, defense, magicAttack, mind, magicDefense, dexterity, speed, critProb, precision, evasion };
         BaseActiveSkill basicAttack = (BaseActiveSkill)GeneralManager.To(basicAttackPath);
         List<SkillBase> skills = GeneralManager.ToSkillBase(skillsPaths.ToList());
         SpecialActiveSkill[] specialSkillsArray = GetSpecialActiveSkills();
         List<EquipPartSO> equipParts = GeneralManager.To<EquipPartSO>(equipPartsPaths);
 
-        PersonajeStats personajeStats = new(personajeStatsSO, characterName, expArray, statsArray, basicAttack, skills, specialSkillsArray, equipmentTypeEquipable.ToList(), equipParts);
+        PersonajeStats personajeStats = new(personajeStatsSO, characterName, expArray, statsDict, basicAttack, skills, specialSkillsArray, equipmentTypeEquipable.ToList(), equipParts);
         //Job
         Job job = this.job.GetJob();
         //----

@@ -18,19 +18,10 @@ public class PersonajeStats
     #region Stats
 
     [Header("Stats")]
-
     private string name;
     private int level, maxLevel;
-    private float life, mana, stamina, attack, strength, dexterity, magicAttack, mind, defense, magicDefense, speed;
-
-    private float critProb, precision, evasion;
-
     private int experience;
-
-    // deprecated ---
-    private int expNextLevel;
-    private float expNextLvlMult;
-    // -------------
+    private readonly BaseStats stats;
 
     private BaseActiveSkill basicAttack;
     private List<SkillBase> skills;
@@ -55,21 +46,7 @@ public class PersonajeStats
     public int Level => level;
     public int InitialLevel => so.initialLevel;
     public int MaxLevel => maxLevel;
-    public float Life => life;
-    public float Mana => mana;
-    public float Stamina => stamina;
-    public float Attack => attack;
-    public float Strength => strength;
-    public float Defense => defense;
-    public float Dexterity => dexterity;
-    public float MagicAttack => magicAttack;
-    public float Mind => mind;
-    public float MagicDefense => magicDefense;
-    public float Speed => speed;
-    public float CritProb => critProb;
-    public float Precision => precision;
-    public float Evasion => evasion;
-
+    public BaseStats Stats => stats;
 
     public List<PersonajeDropSO> Drops => so.drops;
     public BaseActiveSkill BasicAttack => basicAttack;
@@ -79,9 +56,7 @@ public class PersonajeStats
     public SpecialActiveSkill FleeSkill => fleeSkill;
 
     public int Exp => experience;
-    public int ExpNextLevel => expNextLevel;
     //    public int InitialExpNextLevel => so.InitialExpNextLevel;
-    public float ExpNextLvlMult => expNextLvlMult;
     public string LevelUpFormula => so.LevelUpFormula;
 
     public string JobPointsFormula => so.JobPointsFormula;
@@ -97,10 +72,11 @@ public class PersonajeStats
     public PersonajeStats(PersonajeStatsSO statsModel)
     {
         so = statsModel;
+        stats = new(statsModel.initialStats);
         DefaultValues();
     }
 
-    public PersonajeStats(PersonajeStatsSO statsModel, string characterName, int[] expArray, float[] statsArray, BaseActiveSkill basicAttack, List<SkillBase> skills, SpecialActiveSkill[] specialSkillsArray, List<string> equipmentTypeEquipable, List<EquipPartSO> equipParts)
+    public PersonajeStats(PersonajeStatsSO statsModel, string characterName, int[] expArray, Dictionary<Stats, float> stats, BaseActiveSkill basicAttack, List<SkillBase> skills, SpecialActiveSkill[] specialSkillsArray, List<string> equipmentTypeEquipable, List<EquipPartSO> equipParts)
     {
         so = statsModel;
         name = characterName;
@@ -109,20 +85,7 @@ public class PersonajeStats
         maxLevel = expArray[1];
         experience = expArray[2];
 
-        life = statsArray[0];
-        mana = statsArray[1];
-        stamina = statsArray[2];
-        attack = statsArray[3];
-        strength = statsArray[4];
-        defense = statsArray[5];
-        magicAttack = statsArray[6];
-        mind = statsArray[7];
-        magicDefense = statsArray[8];
-        dexterity = statsArray[9];
-        speed = statsArray[10];
-        critProb = statsArray[11];
-        precision = statsArray[12];
-        evasion = statsArray[13];
+        this.stats = new(so.initialStats, stats);
 
         this.basicAttack = basicAttack;
         this.skills = skills;
@@ -135,11 +98,10 @@ public class PersonajeStats
         this.equipParts = equipParts;
     }
 
-    public void LevelUp(float nextLevelExp)
+    public void LevelUp()
     {
         level++;
 
-        expNextLevel = (int)nextLevelExp;
         //        expNextLevel += (int)(expNextLevel * expNextLvlMult);
     }
 
@@ -153,21 +115,6 @@ public class PersonajeStats
         name = so.initialName;
         level = so.initialLevel;
         maxLevel = so.initialMaxLevel;
-        life = so.initialLife;
-        mana = so.initialMana;
-        stamina = so.initialStamina;
-        attack = so.initialAttack;
-        strength = so.initialStrength;
-        dexterity = so.initialDexterity;
-        magicAttack = so.initialMagicAttack;
-        mind = so.initialMind;
-        defense = so.initialDefense;
-        magicDefense = so.initialMagicDefense;
-        speed = so.initialSpeed;
-
-        precision = so.initialPrecision;
-        critProb = so.initialCritProb;
-        evasion = so.initialEvasion;
 
         experience = so.InitialExp;
 
@@ -204,50 +151,12 @@ public class PersonajeStats
 
     internal float Get(Stats stat)
     {
-        return stat switch
-        {
-            Stats.HP_MAX => life,
-            Stats.MP_MAX => mana,
-            Stats.STAMINA_MAX => stamina,
-            Stats.MAX_ATTACK => attack,
-            Stats.MAX_STRENGTH => strength,
-            Stats.MAX_DEFENSE => defense,
-            Stats.MAX_MAGIC_ATTACK => magicAttack,
-            Stats.MAX_MIND => mind,
-            Stats.MAX_MAGIC_DEFENSE => magicDefense,
-            Stats.MAX_DEX => dexterity,
-            Stats.MAX_SPEED => speed,
-            Stats.MAX_PRECISION => precision,
-            Stats.MAX_EVASION => evasion,
-            Stats.MAX_CRIT_PROB => critProb,
-            _ => 0,
-        };
+        return stats.Get(stat);
     }
 
     internal void Add(Stats stat, float amount)
     {
-        Dictionary<Stats, Action> statActions = new()
-    {
-        { Stats.HP_MAX, () => life += amount},
-        { Stats.MP_MAX, () => mana += amount },
-        { Stats.STAMINA_MAX, () => stamina += amount },
-        { Stats.MAX_ATTACK, () => attack += amount },
-        { Stats.MAX_STRENGTH, () => strength += amount },
-        { Stats.MAX_DEX, () => dexterity += amount },
-        { Stats.MAX_MAGIC_ATTACK, () => magicAttack += amount },
-        { Stats.MAX_MIND, () => mind += amount },
-        { Stats.MAX_DEFENSE, () => defense += amount },
-        { Stats.MAX_MAGIC_DEFENSE, () => magicDefense += amount },
-        { Stats.MAX_SPEED, () => speed += amount },
-        { Stats.MAX_PRECISION, () => precision += amount },
-        { Stats.MAX_EVASION, () => evasion += amount },
-        { Stats.MAX_CRIT_PROB, () => critProb += amount }
-    };
-
-        if (statActions.TryGetValue(stat, out Action action))
-        {
-            action.Invoke();
-        }
+        stats.Add(stat, amount);
     }
 
     internal void ChangeSkills(AddRemove changeOption, List<SkillBase> skills)
@@ -309,7 +218,7 @@ public class PersonajeStats
 
     public override string ToString()
     {
-        return $"{GetHashCode()} {name}\n Nivel {Level}\n Vida {life} \n Mana {mana} \n Stamina {stamina} \n Fuerza {strength} \n Destreza {dexterity} \n Mente {mind} \n Defensa {defense} \n Defensa M. {magicDefense} \n Velocidad {speed} \n Precision {precision} \n CritProb {critProb}%";
+        return $"{GetHashCode()} {name}\n Nivel {Level}\n {stats}";
     }
     #endregion
 
