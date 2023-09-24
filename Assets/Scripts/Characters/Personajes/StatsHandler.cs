@@ -152,7 +152,7 @@ public class StatsHandler
     }
         private void InitActualDict()
     {
-        statsDict = new Dictionary<Stats, float>(){
+        actualStatsDict = new Dictionary<Stats, float>(){
             { Stats.LEVEL, character.Level},
             { Stats.JOB_LEVEL, job.Level},
             { Stats.HP, actualLife },
