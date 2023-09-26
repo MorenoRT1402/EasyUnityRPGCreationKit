@@ -111,7 +111,7 @@ public class FighterStateMachine : MonoBehaviour
 
     }
 
-    public void copyFrom(GameObject heroGO)
+    public void CopyFrom(GameObject heroGO)
     {
         PersonajeHandler heroHandler = heroGO.GetComponent<PersonajeHandler>();
         if (heroHandler != null)
@@ -290,16 +290,15 @@ public class FighterStateMachine : MonoBehaviour
 
     protected void SetRandomTarget()
     {
-        TurnHandler myAttack = new TurnHandler();
-        myAttack.Attacker = Hero.name;
+        TurnHandler myAttack = new(){Attacker = Hero.name};
         FighterTeam faction = Faction == FighterTeam.ANY ? GetRandomFaction() : Faction;
         myAttack.Type = GetAttackerType();
-        myAttack.AttackersGameObject = this.gameObject;
+        myAttack.AttackersGameObject = gameObject;
 
         // Choose skill / action
         myAttack.Skill = ChooseSkill(myAttack);
 
-        myAttack.AttackersTargets = BSM.getRandomTarget(myAttack, myAttack.Type);
+        myAttack.AttackersTargets = BSM.GetRandomTarget(myAttack, myAttack.Type);
 
         // Add Action
         BSM.CollectActions(myAttack);
@@ -322,7 +321,7 @@ public class FighterStateMachine : MonoBehaviour
             availableSkills.Add(stats.BasicAttack);
         if (BattleCommandsEnable[BattleCommands.SKILLS])
             foreach (BaseActiveSkill skill in stats.GetActiveSkills())
-                if (skill.IsUsable(BaseActiveSkill.UsableOn.BATTLE) && availableTargets(skill, myAttack) && SufficientResources(skill))
+                if (skill.IsUsable(BaseActiveSkill.UsableOn.BATTLE) && AvailableTargets(skill, myAttack) && SufficientResources(skill))
                     availableSkills.Add(skill);
         if (BattleCommandsEnable[BattleCommands.DEFEND])
             availableSkills.Add(stats.GuardSkill);
@@ -336,7 +335,7 @@ public class FighterStateMachine : MonoBehaviour
         return Hero.SufficientResources(skill);
     }
 
-    private bool availableTargets(BaseActiveSkill skill, TurnHandler myAttack)
+    private bool AvailableTargets(BaseActiveSkill skill, TurnHandler myAttack)
     {
         bool ally = myAttack.Type == FighterTeam.ALLY;
         TargetType targetType = skill.targetType;
@@ -403,12 +402,11 @@ public class FighterStateMachine : MonoBehaviour
         BSM.UpdateLists();
 
         Hero.ChangeBlendTreeAnimation(AnimationSheet.IN_BATTLE);
-        Debug.Log(Hero);
         BSM.allyInput = BattleStateMachine.AllyGUI.ACTIVATE;
         BMUI.CreateButtons(BSM.EnemysInGame);
     }
 
-    internal void ailmentTakeDamage()
+    internal void AilmentTakeDamage()
     {
         Hero.AilmentTakeDamage(this);
     }

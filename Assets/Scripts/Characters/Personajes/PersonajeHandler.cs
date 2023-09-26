@@ -227,7 +227,7 @@ public class PersonajeHandler : MonoBehaviour
         Job job = stats.Job;
         JobSO jobSO = sO.job;
         stats.JobLevelUp();
-        Dictionary<Stats, string> growthDict = jobSO.growthFormulas;
+        Dictionary<Stats, string> growthDict = jobSO.GrowthFormulas;
         foreach (KeyValuePair<Stats, string> stat in growthDict)
         {
             string formula = stat.Value;

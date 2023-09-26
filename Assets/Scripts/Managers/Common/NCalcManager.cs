@@ -459,6 +459,7 @@ public class NCalcManager : Singleton<NCalcManager>
 
     internal float CalculateObjectToFloat(GameObject target, string formula)
     {
+        formula = formula == "" ? "0" : formula;
         string checkedFormula = LocateVariables(formula);
         Expression expression = new(checkedFormula);
         AssignParameters(target, expression);

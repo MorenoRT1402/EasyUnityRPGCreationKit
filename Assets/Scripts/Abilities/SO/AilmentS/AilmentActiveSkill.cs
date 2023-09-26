@@ -12,18 +12,14 @@ public class AilmentActiveSkill : DamageActiveSkill
 
     private void OnEnable()
     {
-        initialize();
-    }
-
-    private void Awake()
-    {
+        Initialize();
     }
     private void Start()
     {
         category = Category.AILMENT;
     }
 
-    private void initialize()
+    private void Initialize()
     {
         ailmentsHandler = new List<Ailment>();
         ailmentsHealHandler = new List<Ailment>();
@@ -39,13 +35,13 @@ public class AilmentActiveSkill : DamageActiveSkill
     {
         if (ailmentsHandler != null)
             foreach (Ailment ailment in ailmentsHandler)
-                apply(ailment, handler);
+                Apply(ailment, handler);
         if (ailmentsHealHandler != null)
             foreach (Ailment ailmentHeal in ailmentsHealHandler)
-                heal(ailmentHeal, handler);
+                Heal(ailmentHeal, handler);
     }
 
-    protected void heal(Ailment ailmentHeal, PersonajeHandler handler)
+    protected void Heal(Ailment ailmentHeal, PersonajeHandler handler)
     {
         List<Ailment> ailments = handler.Stats.Ailments;
         for (int a = 0; a < ailments.Count; a++)
@@ -56,7 +52,7 @@ public class AilmentActiveSkill : DamageActiveSkill
             }
     }
 
-    protected void apply(Ailment ailment, PersonajeHandler handler)
+    protected void Apply(Ailment ailment, PersonajeHandler handler)
     {
         List<Ailment> ailmentsOnFighter = handler.Stats.Ailments;
 
@@ -72,7 +68,7 @@ public class AilmentActiveSkill : DamageActiveSkill
                 }
             }
 
-            Ailment newAilment = new Ailment(ailment.SO);
+            Ailment newAilment = new(ailment.SO);
             ailmentsOnFighter.Add(newAilment);
             newAilment.Initialize();
         }

@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public enum AddRemove
 {
@@ -364,5 +365,11 @@ where TValue : UnityEngine.Object
     {
         dropdown.ClearOptions();
         dropdown.AddOptions(options);
+    }
+
+    internal static T GetRandom<T>(List<T> list)
+    {
+        int randomIndex = Random.Range(0, list.Count);
+        return list[randomIndex];
     }
 }

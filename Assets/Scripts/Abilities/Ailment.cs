@@ -77,7 +77,7 @@ public class Ailment
         {
             if (!character.IsDead())
             {
-                applyEffect(character);
+                ApplyEffect(character);
 
                 timer += Time.deltaTime;
                 timerTemp += Time.deltaTime;
@@ -98,7 +98,7 @@ public class Ailment
     }
         public void EndOfAilment(PersonajeHandler character)
     {
-        revertEffects(character);
+        RevertEffects(character);
         activate = false;
         character.Stats.Ailments.Remove(this);
     }
@@ -132,12 +132,12 @@ public class Ailment
         so.revertEffect(character);
     }
     */
-        private void applyEffect(PersonajeHandler character)
+        private void ApplyEffect(PersonajeHandler character)
     {
         so.ApplyEffect(character, ref activate, ref timerTemp);
     }
 
-        private void revertEffects(PersonajeHandler handler)
+        private void RevertEffects(PersonajeHandler handler)
     {
         so.revertEffect(handler);
     }
@@ -156,14 +156,14 @@ public class Ailment
         timer = 0;
         activate = false;
 
-        secundaryAilments = getSecundaryAilments();
+        secundaryAilments = GetSecundaryAilments();
 
         foreach (Ailment ailment in secundaryAilments)
             ailment.Initialize();
 
     }
 
-    private List<Ailment> getSecundaryAilments()
+    private List<Ailment> GetSecundaryAilments()
     {
         List<Ailment> secundaryAilments = new List<Ailment>();
         List<AilmentSO> secundaryAilmentsSO = so.SecundaryAilments;

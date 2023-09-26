@@ -334,10 +334,10 @@ public class AilmentSO : ScriptableObject
                 cantMove(character);
                 break;
             case AilmentType.CONFUSION:
-                confusion(character);
+                Confusion(character);
                 break;
             case AilmentType.ACTION_INVALID:
-                actionInvalid(character, false);
+                ActionInvalid(character, false);
                 break;
             case AilmentType.OUT_OF_BATTLE:
                 OutOfBattle(character);
@@ -349,19 +349,18 @@ public class AilmentSO : ScriptableObject
 
     private void OutOfBattle(PersonajeHandler character)
     {
-        FighterStateMachine fighter = character.GetComponent<FighterStateMachine>();
-        if (fighter == null) return;
+        if (!character.TryGetComponent<FighterStateMachine>(out var fighter)) return;
         float hp = hpTo0 ? 0 : character.Stats.ActualLife;
         fighter.OutOfBattle(hp, leavesCombat);
     }
 
-    private void actionInvalid(PersonajeHandler character, bool enable)
+    private void ActionInvalid(PersonajeHandler character, bool enable)
     {
         if (character.TryGetComponent<FighterStateMachine>(out var fighter))
             fighter.BattleCommandsEnable[actionToInvalid] = enable;
     }
 
-    private void confusion(PersonajeHandler character)
+    private void Confusion(PersonajeHandler character)
     {
         FighterStateMachine fighter = character.GetComponent<FighterStateMachine>();
         if (fighter == null) return;
@@ -442,7 +441,7 @@ public class AilmentSO : ScriptableObject
                 confusionRestore(handler);
                 break;
             case AilmentType.ACTION_INVALID:
-                actionInvalid(handler, true);
+                ActionInvalid(handler, true);
                 break;
             case AilmentType.OUT_OF_BATTLE:
                 comeBackBattle(handler);

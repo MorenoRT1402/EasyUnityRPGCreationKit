@@ -94,7 +94,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
 
     public AllyGUI allyInput;
 
-    public List<GameObject> HerosToManage = new List<GameObject>();
+    public List<GameObject> HerosToManage;
 
     [Header("Glosary")]
     public string preemptiveAttackText = "Preemptive Attack!";
@@ -130,8 +130,8 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
 
     private List<GameObject> actionBtns = new();
 
-    private List<SkillButtonSlot> skillButtonSlots = new();
-    private List<ItemSlot> itemButtonSlots = new();
+    private readonly List<SkillButtonSlot> skillButtonSlots = new();
+    private readonly List<ItemSlot> itemButtonSlots = new();
 
     private int victoryQueue = 0;
     private float[] speedRatio = new float[3];
@@ -173,6 +173,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
     internal string GetTag(GameObject gameObject, bool isDead)
     {
         string tag = gameObject.tag;
+        if(tag == null || tag == "") return "";
 
         if (tag == ALLY_TAG || tag == ENEMY_TAG)
         {
@@ -205,6 +206,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
     // Start is called before the first frame update
     void Initialize()
     {
+        HerosToManage = new();
         battleState = PerformAction.WAIT;
         UpdateLists();
         speedRatio = GetSpeedRatio();
@@ -231,7 +233,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
         this.canBeDefeated = canBeDefeated;
 
         BMUI = BattleManagerUI.Instance;
-        List<GameObject> groupGO = PartyManager.Instance.GetGameObjects(enemyGroup.Members, BMUI.heroInBattlePrefab);
+        List<GameObject> groupGO = PartyManager.Instance.GetGameObjects(enemyGroup.FinalMembers, BMUI.heroInBattlePrefab);
 
         for (int e = 0; e < groupGO.Count; e++)
         {
@@ -360,15 +362,15 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
     private void ListsAdds()
     {
         //Alives
-        AllysInGame = addByTag(FIGHTER_DEAD_TAG(FighterTeam.ALLY, false));
-        EnemysInGame = addByTag(FIGHTER_DEAD_TAG(FighterTeam.ENEMY, false));
+        AllysInGame = AddByTag(FIGHTER_DEAD_TAG(FighterTeam.ALLY, false));
+        EnemysInGame = AddByTag(FIGHTER_DEAD_TAG(FighterTeam.ENEMY, false));
 
         FightersInGame.AddRange(AllysInGame);
         FightersInGame.AddRange(EnemysInGame);
 
         //Dead
-        DeadAllys = addByTag(FIGHTER_DEAD_TAG(FighterTeam.ALLY, true));
-        DeadEnemys = addByTag(FIGHTER_DEAD_TAG(FighterTeam.ENEMY, true));
+        DeadAllys = AddByTag(FIGHTER_DEAD_TAG(FighterTeam.ALLY, true));
+        DeadEnemys = AddByTag(FIGHTER_DEAD_TAG(FighterTeam.ENEMY, true));
 
         deadFighters.AddRange(DeadAllys);
         deadFighters.AddRange(DeadEnemys);
@@ -382,16 +384,15 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
 
         fighters.AddRange(allys);
         fighters.AddRange(enemys);
-
     }
 
-    private void setTag(List<GameObject> fighters, string tag)
+    private void SetTag(List<GameObject> fighters, string tag)
     {
         for (int i = 0; i < fighters.Count; i++)
             fighters[i].tag = tag;
     }
 
-    private List<GameObject> addByTag(string tag)
+    private List<GameObject> AddByTag(string tag)
     {
         GameObject[] objectsWithTag = GameObject.FindGameObjectsWithTag(tag);
         List<GameObject> result = new List<GameObject>();
@@ -434,7 +435,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
         return fighters;
     }
 
-    private void setFightersInBattle(List<PersonajeHandler> fighters, bool flipX)
+    private void SetFightersInBattle(List<PersonajeHandler> fighters, bool flipX)
     {
         foreach (PersonajeHandler fighter in fighters)
         {
@@ -455,7 +456,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
         switch (battleState)
         {
             case PerformAction.WAIT:
-                applyUpdateStates();
+                ApplyUpdateStates();
                 if (PerformList.Count > 0)
                 {
                     battleState = PerformAction.TAKE_ACTION;
@@ -490,7 +491,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
                 if (HerosToManage.Count > 0)
                 {
                     HerosToManage[0].transform.Find("Selector").gameObject.SetActive(true);
-                    AllyChoice = new TurnHandler();
+                    AllyChoice ??= new TurnHandler();
                     BMUI.SetActive(UIElements.ACTION, true);
                     BMUI.SetActive(UIElements.BACK_BUTTON, true);
                     CreateActionButtons(HerosToManage[0].GetComponent<FighterStateMachine>());
@@ -526,7 +527,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
     private void Victory()
     {
         EndBattle();
-        addJobPoints();
+        AddJobPoints();
         StartCoroutine(VictoryCoroutine(2f));
         //        battleState = PerformAction.FREEZE;
 
@@ -541,7 +542,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
         BMUI.Victory(expToAdd, moneyDropped);
     }
 
-    private void addJobPoints()
+    private void AddJobPoints()
     {
         if (victoryQueue != 0) return;
         victoryQueue = 1;
@@ -592,30 +593,30 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
         return expTotal;
     }
 
-    private void applyUpdateStates()
+    private void ApplyUpdateStates()
     {
         for (int a = 0; a < AllysInGame.Count; a++)
         {
-            applyUpdateStates(AllysInGame[a]);
+            ApplyUpdateStates(AllysInGame[a]);
         }
         for (int e = 0; e < EnemysInGame.Count; e++)
         {
-            applyUpdateStates(EnemysInGame[e]);
+            ApplyUpdateStates(EnemysInGame[e]);
         }
     }
 
-    private void applyUpdateStates(GameObject gameObject)
+    private void ApplyUpdateStates(GameObject gameObject)
     {
         FighterStateMachine fighter = gameObject.GetComponent<FighterStateMachine>();
 
         if (gameObject != null && gameObject.GetComponent<PersonajeHandler>() != null)
-            applyAilments(gameObject.GetComponent<PersonajeHandler>());
+            ApplyAilments(gameObject.GetComponent<PersonajeHandler>());
 
         BMUI.UpdateUIElements(fighter);
 
     }
 
-    private void applyAilments(PersonajeHandler handler)
+    private void ApplyAilments(PersonajeHandler handler)
     {
         List<Ailment> ailments = handler.Stats.Ailments;
 
@@ -629,6 +630,8 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
 
     private void CheckAlive()
     {
+        UpdateLists();
+        if (AllysInGame.Count <= 0 && EnemysInGame.Count <= 0) return;
         if (AllysInGame.Count < 1)
         {
             battleState = PerformAction.LOSE;
@@ -673,7 +676,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
                 }
             }
             if (!found)
-                PerformList[0].AttackersTargets[t] = getRandomTarget(PerformList[0], PerformList[0].Type)[0];
+                PerformList[0].AttackersTargets[t] = GetRandomTarget(PerformList[0], PerformList[0].Type)[0];
         }
         FSM.currentState = FighterStateMachine.TurnState.ACTION;
 
@@ -790,7 +793,7 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
         return groupList;
     }
 
-    public List<GameObject> getRandomTarget(TurnHandler myAttack, FighterTeam team)
+    public List<GameObject> GetRandomTarget(TurnHandler myAttack, FighterTeam team)
     {
         List<GameObject> targets = new();
         if (myAttack.Skill != null)
@@ -834,67 +837,62 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
     {
         if (fighter == null)
             return;
-        /*
-        actionBtns.RemoveAll(GameObject => true);
-        actionBtns.Clear();
-        */
-        BMUI.DestroyInstances(UIElements.ACTION);
-        actionBtns = new List<GameObject>();
 
-        //        Debug.Log("Create action button f " + fighter);
+        BMUI.DestroyInstances(UIElements.ACTION);
+        actionBtns = new();
 
         Dictionary<BattleCommands, bool> battleCommandsDict = fighter.BattleCommandsEnable;
         if (battleCommandsDict[BattleCommands.ATTACK])
-            createActionButton(basicAttackActionText, ActionButtonsFunctions.ATTACK);
+            CreateActionButton(basicAttackActionText, ActionButtonsFunctions.ATTACK);
         if (battleCommandsDict[BattleCommands.SKILLS])
         {
             PersonajeHandler heroToManage = HerosToManage[0].GetComponent<AllyStateMachine>().Hero;
             List<BaseActiveSkill> heroToManageSkills = heroToManage.GetContextSkills(BaseActiveSkill.UsableOn.BATTLE);
             if (heroToManageSkills.Count > 0)
             {
-                createActionButton(skillsActionText, ActionButtonsFunctions.SKILLS);
+                CreateActionButton(skillsActionText, ActionButtonsFunctions.SKILLS);
                 //            BMUI.fillSkillSpacer(heroToManage);
             }
         }
         if (battleCommandsDict[BattleCommands.DEFEND])
-            createActionButton(defendActionText, ActionButtonsFunctions.DEFEND);
+            CreateActionButton(defendActionText, ActionButtonsFunctions.DEFEND);
         if (battleCommandsDict[BattleCommands.ITEMS])
-            createActionButton(itemsActionText, ActionButtonsFunctions.ITEMS);
+            CreateActionButton(itemsActionText, ActionButtonsFunctions.ITEMS);
         if (battleCommandsDict[BattleCommands.FLEE])
-            createActionButton(fleeActionText, ActionButtonsFunctions.FLEE);
+            CreateActionButton(fleeActionText, ActionButtonsFunctions.FLEE);
 
         BMUI.SetActive(UIElements.ACTION, true);
     }
 
-    private void createActionButton(string text, ActionButtonsFunctions func)
+    private void CreateActionButton(string text, ActionButtonsFunctions func)
     {
         BMUI.CreateActionButtons(text, func);
     }
 
     public void InputBasicSkill(BaseActiveSkill skill)
     {
-        SetAttacker(FighterTeam.ALLY);
-
-        AllyChoice.Skill = skill;
         AllyChoice.AttackersTargets = new List<GameObject>();
-
         BMUI.SetActive(UIElements.ACTION, false);
-        BMUI.SetTarget(AllyChoice);
+
+        AllyActionInput(skill);
     }
 
     public void Input2(GameObject chosenEnemy)
     { //enemy selection
+        SetAttacker(FighterTeam.ALLY);
         AllyChoice.AttackersTargets = new List<GameObject> { chosenEnemy };
-        allyInput = AllyGUI.DONE;
+
+        AllyInputDone();
     }
 
     public void SkillInput(BaseActiveSkill skill)
     {
-        AllyActionInput(skill);
         AllyChoice.Item = null;
         BMUI.SetActive(UIElements.SKILL, false);
 
         DestroySkillsOnSkillPanel();
+
+        AllyActionInput(skill);
     }
 
     internal void ItemInput(ItemSO item)
@@ -902,18 +900,21 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
         BaseActiveSkill skillToInput = item.Effect;
         skillToInput.power = item.Power;
 
-        AllyActionInput(skillToInput);
         AllyChoice.Item = item;
         BMUI.SetActive(UIElements.ITEMS, false);
 
         DestroyItemsOnItemsPanel();
+
+        AllyActionInput(skillToInput);
     }
 
     internal void AllyActionInput(BaseActiveSkill skillToInput)
     {
         SetAttacker(FighterTeam.ALLY);
+
         AllyChoice.Skill = skillToInput;
         BMUI.SetTarget(AllyChoice);
+        Debug.Log(AllyChoice.Skill);
     }
 
     internal void Add(SkillButtonSlot skillButton)
@@ -1069,14 +1070,14 @@ public class BattleStateMachine : Singleton<BattleStateMachine>
 
     private void FinishBattle() //battle scene exit
     {
-        setTag(allys, PLAYER_TAG);
+        SetTag(allys, PLAYER_TAG);
 
         BMUI.SetActive(UIElements.BATTLE_BOX, false);
         BMUI.SetActive(UIElements.INFO_PANEL, false);
         BMUI.SetActive(UIElements.ITEMS, false);
         BMUI.SetActive(UIElements.SKILL, false);
         BMUI.SetActive(UIElements.FINISH_BUTTON, false);
-        if(DebugManager.Instance.keyDebugs) Debug.Log("Battle Finished");
+        if (DebugManager.Instance.keyDebugs) Debug.Log("Battle Finished");
 
         AllyResultPanel.characterAnimationStates.Clear();
 

@@ -24,8 +24,6 @@ public class JobSO : ScriptableObject
     public List<string> equipmentTypeEquipable;
     public List<EquipPartSO> equipParts;
 
-    public Dictionary<Stats, string> growthFormulas;
-
     [Header("Growth Per Level")]
     [SerializeField] private StatsGrowthSO statsGrowth;
 
@@ -35,6 +33,8 @@ public class JobSO : ScriptableObject
 
     #region Getters
     public SkillsGrowthSO SkillsLearn => skillsLearn;
+    public Dictionary<Stats, string> GrowthFormulas => statsGrowth.growthFormulas;
+
     #endregion
 
         public float Get(Stats stat)

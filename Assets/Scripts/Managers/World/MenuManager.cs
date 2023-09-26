@@ -471,7 +471,7 @@ public class MenuManager : Singleton<MenuManager>
             BaseActiveSkill skill = skillsOfFamily[i];
             GameObject skillInstance = Instantiate(skillPrefab, skillSpacer.transform);
             SkillButtonSlot skillButtonSlot = skillInstance.GetComponent<SkillButtonSlot>();
-            skillButtonSlot.setData(character, skillsOfFamily[i]);
+            skillButtonSlot.SetData(character, skillsOfFamily[i]);
             skillButtonSlot.SetData(descriptionTMP, manaCostTMP, staminaCostTMP);
             skillButtonSlot.NameTMP.text = skill.Name;
             //            skillButtonSlot.UpdateUI(descriptionTMP, manaCostTMP, staminaCostTMP);

@@ -137,7 +137,7 @@ public class BattleManagerUI : Singleton<BattleManagerUI>
             {
                 SkillButtonSlot skillButton = Instantiate(skillButtonPrefab, skillButtonParent.transform);
                 TextMeshProUGUI skillButtonText = skillButton.NameTMP;
-                skillButton.setSkill(activeSkill);
+                skillButton.SetSkill(activeSkill);
                 skillButtonText.text = activeSkill.Name;
                 BattleStateMachine.Instance.Add(skillButton);
             }
@@ -156,7 +156,7 @@ public class BattleManagerUI : Singleton<BattleManagerUI>
 
     }
 
-    private void fillItemSpacer(Dictionary<ItemSO, int> items)
+    private void FillItemSpacer(Dictionary<ItemSO, int> items)
     {
         itemDescriptionTMP.text = "";
 
@@ -216,7 +216,7 @@ public class BattleManagerUI : Singleton<BattleManagerUI>
                 break;
             case UIElements.ITEMS:
                 if (IM.items.Count > 0)
-                    fillItemSpacer(IM.items);
+                    FillItemSpacer(IM.items);
                 itemPanel.SetActive(enabled);
                 break;
             case UIElements.ITEM_SPACER:
@@ -311,7 +311,7 @@ public class BattleManagerUI : Singleton<BattleManagerUI>
 
         UpdateAllyPanel(ally);
 
-        ally.setATBBar(ally.PanelStats.atbBar);
+        ally.SetATBBar(ally.PanelStats.atbBar);
     }
 
     public void UpdateAllyPanel(AllyStateMachine ally)
@@ -330,7 +330,7 @@ public class BattleManagerUI : Singleton<BattleManagerUI>
             panelStats.heroMP.text = $"{(int)hero.Stats.ActualMana}/{(int)hero.Stats.MaxMana}";
             panelStats.heroStamina.text = $"{(int)hero.Stats.ActualStamina}/{(int)hero.Stats.MaxStamina}";
             if (hero.IsDead()) ally.ATB = 0;
-            updateATBBar(ally);
+            UpdateATBBar(ally);
         }
     }
 
@@ -345,7 +345,7 @@ public class BattleManagerUI : Singleton<BattleManagerUI>
             PersonajeAnimations.Instance.ChangeBlendTreeAnimation(AnimationSheet.DEAD, fighter.gameObject);
     }
 
-    private void updateATBBar(AllyStateMachine ally)
+    private void UpdateATBBar(AllyStateMachine ally)
     {
         if (ally.ATBBar != null)
         {
@@ -448,39 +448,39 @@ public class BattleManagerUI : Singleton<BattleManagerUI>
         //        GameObject targetButton = Instantiate(actionButton) as GameObject;
         TextMeshProUGUI targetButtonText = targetButton.transform.Find("TMP").gameObject.GetComponent<TextMeshProUGUI>();
         targetButtonText.text = text;
-        addActionListener(targetButton, func);
+        AddActionListener(targetButton, func);
 
         //        targetButton.transform.SetParent(actionSpacer, false);
         BSM.ActionBtns.Add(targetButton);
     }
 
-    private void addActionListener(GameObject button, ActionButtonsFunctions func)
+    private void AddActionListener(GameObject button, ActionButtonsFunctions func)
     {
         BSM = BattleStateMachine.Instance;
         StatsHandler stats = BSM.HerosToManage[0].GetComponent<AllyStateMachine>().Hero.Stats;
         switch (func)
         {
             case ActionButtonsFunctions.ATTACK:
-                button.GetComponent<Button>().onClick.AddListener(() => inputBasicSkill(stats.BasicAttack));
+                button.GetComponent<Button>().onClick.AddListener(() => InputBasicSkill(stats.BasicAttack));
                 break;
             case ActionButtonsFunctions.SKILLS:
                 button.GetComponent<Button>().onClick.AddListener(() => SetActive(UIElements.SKILL, true));
                 break;
             case ActionButtonsFunctions.DEFEND:
-                button.GetComponent<Button>().onClick.AddListener(() => inputBasicSkill(stats.GuardSkill));
+                button.GetComponent<Button>().onClick.AddListener(() => InputBasicSkill(stats.GuardSkill));
                 break;
             case ActionButtonsFunctions.ITEMS:
                 button.GetComponent<Button>().onClick.AddListener(() => SetActive(UIElements.ITEMS, true));
                 break;
             case ActionButtonsFunctions.FLEE:
-                button.GetComponent<Button>().onClick.AddListener(() => inputBasicSkill(stats.FleeSkill));
+                button.GetComponent<Button>().onClick.AddListener(() => InputBasicSkill(stats.FleeSkill));
                 break;
             case ActionButtonsFunctions.NULL:
                 break;
         }
     }
 
-    private void inputBasicSkill(BaseActiveSkill skill)
+    private void InputBasicSkill(BaseActiveSkill skill)
     {
         BSM.InputBasicSkill(skill);
     }

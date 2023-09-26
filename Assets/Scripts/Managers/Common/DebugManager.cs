@@ -118,7 +118,8 @@ public class DebugManager : Singleton<DebugManager>
     }
 
 
-    internal static void DebugList(List<SkillBase> list, string separator)
+    internal static void DebugList<T>(List<T> list, string separator)
+    where T : UnityEngine.Object
     {
         foreach (UnityEngine.Object obj in list)
             Debug.Log($"{obj}{separator}");

@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10256265bbad324479de3b8efd161a84, type: 3}
   m_Name: TestEnemyGroup1
   m_EditorClassIdentifier: 
-  groupID: testeEnemyGroup1
-  members:
+  groupID: testEnemyGroup1
+  fixedMembers:
   - {fileID: 11400000, guid: 36238653349ffd64388cf5fc71764f92, type: 2}
   - {fileID: 11400000, guid: b971992705647fb4fa17dc9af6e76275, type: 2}
+  randomMembers:
+  - {fileID: 11400000, guid: 36238653349ffd64388cf5fc71764f92, type: 2}
+  - {fileID: 11400000, guid: b971992705647fb4fa17dc9af6e76275, type: 2}
+  partyMembersCount: 01000000020000000300000004000000
   appearenceProb: 20

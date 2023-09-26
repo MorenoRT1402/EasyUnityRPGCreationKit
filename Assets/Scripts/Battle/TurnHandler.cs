@@ -233,7 +233,7 @@ public class TurnHandler
         FighterStateMachine targetSM = attackersTarget.GetComponent<FighterStateMachine>();
         targetSM.TakeDamage(result);
         if (targetSM != null)
-            targetSM.ailmentTakeDamage();
+            targetSM.AilmentTakeDamage();
     }
 
     public override string ToString()

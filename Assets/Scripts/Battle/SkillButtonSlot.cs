@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillButtonSlot : MonoBehaviour
 {
@@ -15,11 +16,11 @@ public class SkillButtonSlot : MonoBehaviour
 
     private TextMeshProUGUI descriptionTMP, manaCostTMP, staminaCostTMP;
 
-    public void skillChoosed()
+    public void SkillChoosed()
     {
         BattleStateMachine BSM = BattleStateMachine.Instance;
         if (BSM != null && _ally.SufficientResources(_skill))
-            BattleStateMachine.Instance.SkillInput(_skill);
+            BSM.SkillInput(_skill);
     }
     public void UpdateUI(PersonajeHandler ally, BaseActiveSkill skill, TextMeshProUGUI descriptionTMP, TextMeshProUGUI allyNameTMP, TextMeshProUGUI allyManaTMP, TextMeshProUGUI allyStaminaTMP, TextMeshProUGUI manaCostTMP, TextMeshProUGUI staminaCostTMP)
     {
@@ -34,7 +35,7 @@ public class SkillButtonSlot : MonoBehaviour
     public void UpdateUI(TextMeshProUGUI descriptionTMP, TextMeshProUGUI manaCostTMP, TextMeshProUGUI staminaCostTMP)
     {
         SetData(descriptionTMP, manaCostTMP, staminaCostTMP);
-        updateTexts();
+        UpdateTexts();
 
     }
 
@@ -44,10 +45,10 @@ public class SkillButtonSlot : MonoBehaviour
         nameTMP.text = _skill.Name;
         if (BMUI != null) BMUI.UpdateSkillPanelUI(_ally, _skill);
         else
-            updateTexts();
+            UpdateTexts();
     }
 
-    private void updateTexts()
+    private void UpdateTexts()
     {
         nameTMP.text = _skill.Name;
         descriptionTMP.text = _skill.Description;
@@ -65,15 +66,22 @@ public class SkillButtonSlot : MonoBehaviour
         _ally = ally;
     }
 
-    public void setSkill(BaseActiveSkill skill)
+    public void SetSkill(BaseActiveSkill skill)
     {
         _skill = skill;
+        SetListener();
     }
 
-    internal void setData(PersonajeHandler character, BaseActiveSkill skill)
+    private void SetListener()
+    {
+        Button btn = GetComponent<Button>();
+        btn.onClick.AddListener(() => SkillChoosed());
+    }
+
+    internal void SetData(PersonajeHandler character, BaseActiveSkill skill)
     {
         SetAlly(character);
-        setSkill(skill);
+        SetSkill(skill);
     }
 
     internal void SetData(TextMeshProUGUI descriptionTMP, TextMeshProUGUI manaCostTMP, TextMeshProUGUI staminaCostTMP)

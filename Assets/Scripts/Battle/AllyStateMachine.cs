@@ -92,7 +92,7 @@ public class AllyStateMachine : FighterStateMachine
 
     }
 
-    internal void setATBBar(Image atbBar)
+    internal void SetATBBar(Image atbBar)
     {
         this.atbBar = atbBar;
     }
