@@ -33,7 +33,7 @@ public class PersonajeHandler : MonoBehaviour
 
         internal void SetData(PersonajeStats personajeStats, Job job, Dictionary<EquipPartSO, EquipmentSO> equip, Sprite spriteInMenu, List<Job> jobDomains, PersonajeAffinitiesSO affinitiesSO, Dictionary<Affinity, float>[] resistances, Affinity[] elementalAffinities)
     {
-                CommonInit();
+                BaseInit();
 
 //                DebugManager.DebugDict(equip);
 
@@ -45,7 +45,7 @@ public class PersonajeHandler : MonoBehaviour
 
     public void Init(PersonajeHandlerSO personajeHandlerSO)
     {
-        CommonInit();
+        BaseInit();
 
         sO = personajeHandlerSO;
 
@@ -55,12 +55,14 @@ public class PersonajeHandler : MonoBehaviour
         Job jobToHand = new(sO.job);
         stats = new StatsHandler(statsToHand, jobToHand);
 
+        GetComponent<SpriteRenderer>().sprite = stats.SpriteInMenu;
+
         affinities = new PersonajeAffinities(sO.affinities);
         RunComponents();
         //        if (TryGetComponent<Animator>(out var animator)) animator.runtimeAnimatorController = sO.animationSheet;
     }
 
-    private void CommonInit()
+    private void BaseInit()
     {
         pAnimations = PersonajeAnimations.Instance;
         personajeExperiencia = new PersonajeExperiencia();
